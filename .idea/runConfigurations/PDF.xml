@@ -10,7 +10,7 @@
       <envs />
       <expand-macros-in-environment-variables>false</expand-macros-in-environment-variables>
       <before-run-command />
-      <main-file>$PROJECT_DIR$/IEEE-conference-template-062824.tex</main-file>
+      <main-file>$PROJECT_DIR$/main.tex</main-file>
       <output-path>$PROJECT_DIR$/out</output-path>
       <auxil-path>{projectDir}/auxil</auxil-path>
       <working-directory>{mainFileParent}</working-directory>
