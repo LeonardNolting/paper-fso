@@ -25,23 +25,23 @@ Many of the hard engineering challenges have been ``solved in the past three dec
 
 One of the biggest remaining obstacles for urban FSO, however, originates from the point-to-point nature of FSO links: A line-of-sight must exist between transmitter and receiver~\cite{systematicsurvey}.
 
-\subsection*{Contributions}\label{subsec:contributions}
-
-In this thesis, we develop and implement a method to check individual lines for line-of-sight availability.
-
-Our goal is to analyze the topology of urban networks created purely from verified lines-of-sight.
-
-As link ranges that can be sustained are limited during worst case conditions, we will provide network connectivity metrics over topologies that deploy only links up to a variable maximum length.
-From that data, we can derive values that suggest what link ranges need to be supported for various degrees of connectivity in urban FSO networks.
-This data can also aid in the judgment which priority needs to be given to the FSO line-of-sight requirement during selection of node locations (for example, as opposed to cellular coverage or cost), or in an extreme case, how well FSO can be retrofitted to existing sites and what role additional mirrors and relays play.
-
-Data rate and capacity simulations are out of the scope of this work, but can build on this work by selecting a set of gateway locations, which connect the FSO network to the internet backbone, and simulating traffic flows from the edge to the gateways.
-
-As a sample dataset for an urban network, we choose an official database of cell sites, simulating a mobile backhaul backbone.
-We ran the simulation for 19 million lines in the greater Paris area and find that in a topology of links of up to one kilometer length, 91\% of the considered nodes have at least one line-of-sight.
-Moreover, increasing link length beyond around one kilometer has diminishing returns in increased connectivity, but vastly increases options for redundancy and reduces the average hop count between nodes.
-At 300 m, a single connected component emerges covering the city of Paris, with 95.8\% of nodes in the region covered by its concave hull connected to the component.
-
-maybe: Short lines (due to worst-case assumption) aid line-of-sight availability.
-
-maybe: Small world: Hop count can be reduced during good conditions
+%\subsection*{Contributions}\label{subsec:contributions}
+%
+%In this thesis, we develop and implement a method to check individual lines for line-of-sight availability.
+%
+%Our goal is to analyze the topology of urban networks created purely from verified lines-of-sight.
+%
+%As link ranges that can be sustained are limited during worst case conditions, we will provide network connectivity metrics over topologies that deploy only links up to a variable maximum length.
+%From that data, we can derive values that suggest what link ranges need to be supported for various degrees of connectivity in urban FSO networks.
+%This data can also aid in the judgment which priority needs to be given to the FSO line-of-sight requirement during selection of node locations (for example, as opposed to cellular coverage or cost), or in an extreme case, how well FSO can be retrofitted to existing sites and what role additional mirrors and relays play.
+%
+%Data rate and capacity simulations are out of the scope of this work, but can build on this work by selecting a set of gateway locations, which connect the FSO network to the internet backbone, and simulating traffic flows from the edge to the gateways.
+%
+%As a sample dataset for an urban network, we choose an official database of cell sites, simulating a mobile backhaul backbone.
+%We ran the simulation for 19 million lines in the greater Paris area and find that in a topology of links of up to one kilometer length, 91\% of the considered nodes have at least one line-of-sight.
+%Moreover, increasing link length beyond around one kilometer has diminishing returns in increased connectivity, but vastly increases options for redundancy and reduces the average hop count between nodes.
+%At 300 m, a single connected component emerges covering the city of Paris, with 95.8\% of nodes in the region covered by its concave hull connected to the component.
+%
+%maybe: Short lines (due to worst-case assumption) aid line-of-sight availability.
+%
+%maybe: Small world: Hop count can be reduced during good conditions

@@ -56,30 +56,39 @@ Free-Space Optical Communication (FSO), mobile networks, backhaul, line-of-sight
 \input{content/introduction}
 
 \subsection*{Related Work}\label{subsec:related-work}
-- Typically measured: What is possible (later contrast: we look at what is necessary)
-- Obstruction models: LoD 1 (later contrast: LiDAR far more detailed)
+weather link ranges: commonly studied → cite values for ballpark idea (100-500 m) (later contrast: we look at what is necessary)
+
+relays: also widely accepted as a very, if not the most effective counter-measurement
+
+line-of-sight: obstructions usually LoD 1, e. g. FSONet (later contrast: LiDAR far more detailed)
 
 \subsection*{Contributions}\label{subsec:contributions2}
 Close to existing contributions chapter
 
-- What do we do, raw (explain scenario, methodology)
+- What do we do, raw
     - Allude to relay idea from introduction
     - take ideas from presentation for a logical introduction to our methodology
     - Be very clear about what we do not do, too (capacities, gateways, TE, ...)
 - Contrast to Related Work:
     - Derive required link lengths from reality of mesh density
-    - Use more accurate obstruction models (only tease here, this is our transition to Methodology)
+    - Use more accurate obstruction models (only tease here, this is our transition to sec:implementation)
 
-\subsection*{Structure}\label{subsec:structure}
+\subsection*{Paper Outline}\label{subsec:structure}
 TODO: append to contributions?
 
-We continue by introducing
+We continue by introducing our implementation for line-of-sight analysis, including data source selection, preprocessing steps, a comparison of ray tracing algorithms, and a note on adapting this implementation to different geographic areas and cell site locations.
+
+... evaluation ...
+
+... validation ...
+
+... conclusion ...
 
 % No background chapter (FSO background is briefly introduced in introduction - "what is FSO and its main challenge")
 
 \section{Implementation}\label{sec:implementation}
 - Obstruction model? (Google Maps, Topoexport, LiDAR)
-- Data preprocessing
+- Cell site database \& preprocessing (snapping, filtering)
 - (Candidate link selection)
 
 - CPU vs. CUDA vs. RT cores
