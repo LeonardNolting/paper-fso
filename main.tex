@@ -66,7 +66,8 @@ line-of-sight: obstructions usually LoD 1, e. g. FSONet (later contrast: LiDAR f
 Close to existing contributions chapter
 
 - What do we do, raw
-    - Allude to relay idea from introduction
+    - Allude to relay idea from introduction (hop by hop)
+    - worst-case analysis (short links - reader will think "many"?); briefly cut on optimizations for average-cases, regarding hop counts (relieve reader: not many hops usually), and fault resilience briefly
     - take ideas from presentation for a logical introduction to our methodology
     - Be very clear about what we do not do, too (capacities, gateways, TE, ...)
 - Contrast to Related Work:
@@ -101,8 +102,24 @@ We continue by introducing our implementation for line-of-sight analysis, includ
 - Where exactly did we run our simulations (parameters)
 
 - Walk through results, logical steps
+    - data shows, as expected, short links are less obstructed; and as expected, there are more long candidate links ⇒ What is the distribution like?
+    - do at least all nodes have one LoS?
+        - 200m = majority
+        - 300m = 3/4
+        - >1000m = diminishing returns
+    - urban → more dense → look at urban nodes specifically?
+    - one LoS = one hop, but not entire path to other nodes; connected components?
+        - 300m = big connected component
+        - ...
+    - path may exist, but at what cost? hop counts
+    - reconfiguration, small world
+    - fault resilience
+        - redundancy per node? degrees
+        - angular diversity (easily blocked by a new building or not?)
+        - k-connectivity
+        - structural hole analysis
 
-1.
+TODO: how to integrate results of different cities (depends on what the results look like in the first place)
 
 \section{Validation}\label{sec:validation}
 Why is what we do correct and what are the limitations?
@@ -116,7 +133,7 @@ And why is that relevant?
 
 And why are these results credible?
 
-And how can we go on from here? Immediate next steps?
+(And how can we go on from here? Immediate next steps? How to form this into a meaningful framework?)
 
 \vspace{12pt} % Keep?
 
