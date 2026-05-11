@@ -75,8 +75,6 @@ Close to existing contributions chapter
     - Use more accurate obstruction models (only tease here, this is our transition to sec:implementation)
 
 \subsection*{Paper Outline}\label{subsec:structure}
-TODO: append to contributions?
-
 We continue by introducing our implementation for line-of-sight analysis, including data source selection, preprocessing steps, a comparison of ray tracing algorithms, and a note on adapting this implementation to different geographic areas and cell site locations.
 
 ... evaluation ...
@@ -88,12 +86,47 @@ We continue by introducing our implementation for line-of-sight analysis, includ
 % No background chapter (FSO background is briefly introduced in introduction - "what is FSO and its main challenge")
 
 \section{Implementation}\label{sec:implementation}
-- Obstruction model? (Google Maps, Topoexport, LiDAR)
-- Cell site database \& preprocessing (snapping, filtering)
-- (Candidate link selection)
+explain that links = between nodes => only need nodes
 
-- CPU vs. CUDA vs. RT cores
-- Bresenham vs. sampling vs. Amanatides \& Woo vs. BVH tree
+cell sites source? → country: France
+preprocessing - snapping and filtering
+
+Simulating realistic lines-of-sight requires a model of obstructions of the world.
+- Statistical models (Manhattan grid)
+- OpenStreetMap building footprints + height = LoD1
+- Commercial options exist which offer increased accuracy based on LiDAR measurements, as well as raw LiDAR point clouds, post-processed formats thereof and multi-sensor measurements. Pricing models? (subscription; root tile request for 3h; not disclosed)
+- since nodes from France, what about specifically in France?
+- France public option LiDAR HD: open / free access, good nationwide coverage, high accuracy
+- France also: processed format DSMs. explain DSMs. good compromise for us: standardized, simple format (2D array), easy to manage (lower storage), cell sites generally high (not underneath obstructions)
+
+Conceptually, computing collisions of a line with the obstruction model requires calculating which pixels of the DSM raster it crosses and checking if the surface at any of those pixels is higher than the line.
+
+Line rasterization algorithms from computer graphics, such as Bresenham's and Xiaolin Wu's algorithm, solve a similar problem of painting pixels between two lines [TODO quote].
+Designed for another purpose, however, they do not paint exactly all pixels touched by the line, skipping over potential obstacles [TODO show? figure? or good without deeper explanation?].
+Sampling points along the line at a rate of two samples per pixel shows accuracy gains at similar speeds, but still misses pixels.
+The Python library rasterio offers a function masking exactly all pixels touched by a line, which in turn calls to GDAL [TODO quote].
+Tests show the fastest accurate CPU-based method to be ``A Fast Voxel Traversal Algorithm'' by Amanatides and Woo [TODO quote].
+... CUDA ...
+
+NVIDIA and other graphics processing unit producers offer dedicated ray tracing offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware.
+Our tests show that the main bottleneck becomes the memory transfer of the DSM to the accelerator, the time spent on building the AS and the additional memory occupied by the AS.
+The DSM can be seen as a two-dimensional grid of ``pixel pillars'' - each pixel a cuboid stretching from -inf to the surface height at the pixel.
+Converting the DSM to triangle primitives without quality loss requires two triangles per visible surface, which are laid out as one rectangle.
+Since the top surface of a pixel is always visible, and the bottom pixel is always covered by the sides of this and neighboring pixels and is never visible, and assuming that on average two sides are visible per pixel, this results in six triangles per pixel.
+... 3 floats per triangle, 1 after compaction, too many values, memory inflation ...
+Using instance acceleration structures (IAS), which allow replicating one AS by shifting and scaling it, may reduce this memory inflation.
+NVIDIA supports custom primitives for its ray tracing platform for any objects that cannot be modeled adequately with triangles.
+Custom primitives assign an axis-aligned bounding box (AABB) containing the primitive and a custom shader, which will be invoked when a ray intersects the AABB. The ray tracing check is still offloaded and only hands over to the shader for an intersection with the AABB.
+Since aforementioned ``pixel pillars'' are AABBs, they can be transformed to custom primitives.
+Whenever the intersection shader is called, it already marks an intersection without further computation, and the line can immediately be marked as blocked.
+Memory inflation can also be combated by smoothing out the model creating a triangulated RSG (regular square grid).
+Each pixel is converted to one triangle that
+... conservative conversion (always the maximum) ...
+... performance: 6-8 gigarays per second for one 1*1km tile, but lines have to split up over tiles because AS cannot grow much larger ...
+TODO: mention more explicitly that the CPU version generally is line-bound, whereas the RT version is area-bound
+
+The choice of implementation between CPU, CUDA and OptiX depends primarily on the size of the datasets and region considered, the density of lines per area, implementation complexity and hardware accelerator availability.
+For the data and area considered in this paper, the CPU version has sufficient performance, but derived work with significantly more lines to check will benefit from a hardware ray-traced version.
 
 \subsection*{Adaptability}\label{subsec:adaptability}
 
