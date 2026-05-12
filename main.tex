@@ -126,35 +126,59 @@ Each pixel is converted to one triangle that
 TODO: mention more explicitly that the CPU version generally is line-bound, whereas the RT version is area-bound
 
 The choice of implementation between CPU, CUDA and OptiX depends primarily on the size of the datasets and region considered, the density of lines per area, implementation complexity and hardware accelerator availability.
-For the data and area considered in this paper, the CPU version has sufficient performance, but derived work with significantly more lines to check will benefit from a hardware ray-traced version.
+For the data and area considered in this paper, the CPU version shows sufficient performance, but derived work with significantly more lines to check will benefit from a hardware ray-traced version.
 
 \subsection*{Adaptability}\label{subsec:adaptability}
 
 
 \section{Evaluation}\label{sec:evaluation}
-- Where exactly did we run our simulations (parameters)
+Setup, what did we test exactly (parameters)
 
-- Walk through results, logical steps
-    - data shows, as expected, short links are less obstructed; and as expected, there are more long candidate links ⇒ What is the distribution like?
-    - do at least all nodes have one LoS?
-        - 200m = majority
-        - 300m = 3/4
-        - >1000m = diminishing returns
-    - urban → more dense → look at urban nodes specifically?
-    - one LoS = one hop, but not entire path to other nodes; connected components?
-        - 300m = big connected component
-        - ...
-    - path may exist, but at what cost? hop counts
-    - reconfiguration, small world
-    - fault resilience
-        - redundancy per node? degrees
-        - angular diversity (easily blocked by a new building or not?)
-        - k-connectivity
-        - structural hole analysis
+Given those parameters, 12.2\% of candidate links are unobstructed and therefore theoretically suitable for an FSO link.
+... short links more interesting, quality, uptime ...
+Contradiction:
+Short links more likely to be clear (results confirm that)
+But the further out you go, the more candidates there are
+What is it really like? → Figure
+
+\begin{figure}[htbp]
+    \centerline{\includegraphics[width=\columnwidth]{figures/stats/link_lengths_pdf}}
+    \caption{Lengths of tested lines that are clear. Short links are underrepresented.}
+    \label{fig:link_lengths_pdf}
+\end{figure}
+
+More relevant than the absolute amount of links is the number of links per node.
+- 200m = majority
+- 300m = 3/4
+- >1000m = diminishing returns
+
+\begin{figure}[htbp]
+    \centerline{\includegraphics[width=\columnwidth]{figures/stats/connected_nodes_over_length}}
+    \caption{Fraction of nodes with at least one line-of-sight with varying maximum link lengths. TODO also show a curve "Fraction of nodes with >2 edges" and one "Fraction of nodes with >5 edges" or so}
+    \label{fig:connected_nodes_over_length}
+\end{figure}
+
+urban → more dense → look at urban nodes specifically?
+
+operators: Can a single operator cover a city? What link length is required? → connected components
+
+single operator not very good
+
+operator cooperations better
+
+full network even very good
+
+connected components may not be very stable → k-connectivity, Menger's theorem, disjoint paths (again for operator cooperations and full network?)
+
+redundancy per node, degrees (is that implied by k-connectivity?), link failure resilience
+
+spatial correlation of link failures → angular diversity of links (probability of a new obstacle isolating a node, depending on obstacle size)
+
+path may exist, but at what cost? hop counts
+
+reconfiguration, small world
 
 TODO: how to integrate results of different cities (depends on what the results look like in the first place)
-TODO: how to integrate results for different operators
-TODO: how to integrate fault analysis results
 
 \section{Validation}\label{sec:validation}
 Why is what we do correct and what are the limitations?
