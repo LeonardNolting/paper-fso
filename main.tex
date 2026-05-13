@@ -89,7 +89,7 @@ We continue by introducing our implementation for line-of-sight analysis, includ
 \section{Implementation}\label{sec:implementation}
 explain that links = between nodes => only need nodes
 
-cell sites source? → country: France
+cell sites source? (explain difference between suport and antenna) (fixes country to France for later for obstruction model choice)
 preprocessing - snapping and filtering
 
 Simulating realistic lines-of-sight requires a model of obstructions of the world.
@@ -217,10 +217,22 @@ Very few to no paths are longer than 20 hops and the average drops below 10.
 TODO: how to integrate results of different cities (depends on what the results look like in the first place)
 
 \section{Validation}\label{sec:validation}
-Why is what we do correct and what are the limitations?
+We analyze the limitations of the input data, our methodology and the implementation.
 
 \subsection{Cell Site Locations}\label{subsec:cell-site-locations}
-... cell site locations ... (height: compared to Google Maps 3D, which itself may not be perfect)
+database contains errors
+
+consistently better source cannot be found
+
+verifying irl slow, few points
+
+compare to google maps 3D and streetview --- too many to check them all, but sample subset to measure the error
+
+only cell sites with unambiguous 3D coverage, google maps itself not perfect, for buildings / big towers (e.g. reservoirs) snap to closest point
+
+heuristic for buildings: snapping error
+
+heuristic for towers/masts: not possible
 
 \subsection{Digital Surface Model}\label{subsec:digital-surface-model}
 LiDAR generally good because similar wavelengths
