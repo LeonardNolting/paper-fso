@@ -130,11 +130,15 @@ The choice of implementation between CPU, CUDA and OptiX depends primarily on th
 For the data and area considered in this paper, the CPU version shows sufficient performance, but derived work with significantly more lines to check will benefit from a hardware ray-traced version.
 
 \subsection*{Adaptability}\label{subsec:adaptability}
-
+TODO
 
 \section{Evaluation}\label{sec:evaluation}
+TODO
+
+\subsection{Parameters}\label{subsec:parameters}
 Setup, what did we test exactly (parameters)
 
+\subsection{Connectedness}\label{subsec:connectedness}
 Given those parameters, 12.2\% of all candidate links are unobstructed and therefore theoretically suitable for an FSO link.
 As worst-case free-space optical link quality degrades with increasing link length, our focus lies on short links.
 On one side, the probability of an obstacle blocking the LoS of a link grows with increasing link length, favoring short links over long links.
@@ -177,6 +181,7 @@ As stated in~\cref{sec:contributions}, complete capacity simulations are out of 
     \label{fig:components_300m}
 \end{figure}
 
+\subsection{Resilience}\label{subsec:resilience}
 connected components may not be very stable (single point of failure?) → k-connectivity, Menger's theorem, disjoint paths (again for operator cooperations and full network?)
 
 redundancy per node, degrees (is that implied by k-connectivity?), link failure resilience
@@ -185,13 +190,14 @@ While k-edge connectivity protects from random link failures, FSO link failures 
 For a worst-case analysis, we look at each individual node and calculate the minimum angle $\alpha$ that a single rectangular obstacle needs to cover in order to block all LoS, effectively completely isolating the node.
 Translating this to an average-case, in~\cref{fig:} we see the probability of a randomly placed obstacle of varying $\alpha$ isolating a node. TODO name values
 
+\subsection{Hop Counts}\label{subsec:hop-counts}
+TODO shorten (end)
+
 While nodes grouped up in a connected component does mean that they can communicate with each other, the path is at risk of containing a large number of hops.
 The topology of all nodes and links up to 300 m contains shortest paths of more than 60 hops.
-
-TODO shorten
 This is an inherent limitation of the relaying approach during worst-case conditions.
-However, FSO's unique ability to reconfigure its links by physically steering the transmitter to point at another receiver can be used to create shortcuts in the path and reduce the hop count.
-Reconfiguration happens in ``time scales of ms-s''~\cite{invited}.
+During best-case conditions, however, FSO link distances are less constrained [TODO quote - can I find upper limits? a 100km experiment for instance?].
+FSO has the unique ability to reconfigure its link by physically steering the transmitter to point at another receiver in ``time scales of ms-s''~\cite{invited}.
 This rewiring process is also known as the Small World phenomenon~\cite{smallworld}.
 Key insight of the Watts and Strogatz model is that a highly clustered graph only needs a small percentage of shortcut links to achieve a high reduction in the ``average degrees of separation'', here hop count, while maintaining the clustering.~\cref{fig:hop_counts_rewired} shows that on our connected component by randomly selecting lines in the topology, removing them from the graph and adding a new, random line of up to $10km$ length to simulate a best-case scenario.
 Availability of such long links is shown in~\cref{fig:link_lengths_pdf}.
@@ -236,11 +242,8 @@ TODO Google vs RGE Alti
 
 \subsection{Digital Surface Model}\label{subsec:digital-surface-model}
 LiDAR is generally well-suited for FSO LoS checks as they commonly share the same near-infrared band [TODO quote/show].
-
 The LiDAR impulse data by IGN has an average of $10 impulses/m^2$ with vertical accuracy of $~10 cm$ and horizontal accuracy of $~50 cm$.
-
 The DSM output is generally delivered at a grid space of $50 cm$, lowering resolution by a factor of $2.5$.
-
 Modeling only the surface, it also crops information about the shape of objects underneath the surface, leading to any gaps through which a LoS could pass, for example through the Eiffel Tower or underneath bridges, not being modeled.
 
 data freshness
