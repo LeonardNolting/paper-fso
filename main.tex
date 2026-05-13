@@ -97,7 +97,7 @@ Simulating realistic lines-of-sight requires a model of obstructions of the worl
 - OpenStreetMap building footprints + height = LoD1
 - Commercial options exist which offer increased accuracy based on LiDAR measurements, as well as raw LiDAR point clouds, post-processed formats thereof and multi-sensor measurements. Pricing models? (subscription; root tile request for 3h; not disclosed)
 - since nodes from France, what about specifically in France?
-- France public option LiDAR HD: open / free access, good nationwide coverage, high accuracy
+- France public option LiDAR HD: open / free access, good nationwide coverage, high accuracy - by IGN, the French national mapping agency
 - France also: processed format DSMs. explain DSMs. good compromise for us: standardized, simple format (2D array), easy to manage (lower storage), cell sites generally high (not underneath obstructions)
 
 Conceptually, computing collisions of a line with the obstruction model requires calculating which pixels of the DSM raster it crosses and checking if the surface at any of those pixels is higher than the line.
@@ -246,11 +246,13 @@ The LiDAR impulse data by IGN has an average of $10 impulses/m^2$ with vertical 
 The DSM output is generally delivered at a grid space of $50 cm$, lowering resolution by a factor of $2.5$.
 Modeling only the surface, it also crops information about the shape of objects underneath the surface, leading to any gaps through which a LoS could pass, for example through the Eiffel Tower or underneath bridges, not being modeled.
 
-data freshness
+The data has been collected since 2021 and constitutes only a momentary snapshot of obstructions.
+Volatile and future obstructions are not or inconsistently modeled, such as road vehicles, birds, new constructions and tree foliage of deciduous trees.
 
-temporary obstructions (foliage!? cranes)
+A total of 0.046\% of the area considered takes on the ``nodata'' value, which we consider negligible.
+``Zones Interdites à la Captation Aérienne des Données'' (ZICAD, restricted areas for aerial data collection) are either included in the nodata areas or censored through interpolation from surrounding data.
 
-NODATA, censored areas
+TODO how much area is NODATA across all cities checked? update the 0.046\%
 
 \subsection{Numerical tradeoffs}\label{subsec:numerical-tradeoffs}
 earth's curvature + atmospheric refraction
