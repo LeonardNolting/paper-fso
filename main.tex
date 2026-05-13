@@ -220,19 +220,19 @@ TODO: how to integrate results of different cities (depends on what the results 
 We analyze the limitations of the input data, our methodology and the implementation.
 
 \subsection{Cell Site Locations}\label{subsec:cell-site-locations}
-database contains errors
+Comparing the antenna support locations as given by the database to the LiDAR data and Google Maps 3D imagery exposes inaccuracies that are not officially documented.
+However, more reliable data sources are not available.
+For around 9500 cell sites in the area around Paris alone, correcting the locations by visiting each is not feasible.
+Automating the correction based on visuals from Google Street View and EMR measurements from OpenCelliD may work, but is limited by the incomplete availability of that data and significant complexity.
+We choose to take a random sample subset of the support locations and correct their position based on Google Maps 3D data where the data quality is sufficient to indicate the exact three-dimensional position of the highest point of the support.
+400 (4\%) of database entries were validated which show a horizontal deviation of...TODO...
+These data points also show a X\% improvement for building antenna supports through the heuristic developed in~\cref{sec:implementation} that ``snaps'' points to the closest building.
+For towers and masts, a heuristic is to assume those locations to be the highest surface point in close proximity of the database location, reusing the DSM.
+However, analysis shows that thin support masts are not reliably picked up by the model.
 
-consistently better source cannot be found
+TODO discuss vertical error distribution
 
-verifying irl slow, few points
-
-compare to google maps 3D and streetview --- too many to check them all, but sample subset to measure the error
-
-only cell sites with unambiguous 3D coverage, google maps itself not perfect, for buildings / big towers (e.g. reservoirs) snap to closest point
-
-heuristic for buildings: snapping error
-
-heuristic for towers/masts: not possible
+TODO Google vs RGE Alti
 
 \subsection{Digital Surface Model}\label{subsec:digital-surface-model}
 LiDAR generally good because similar wavelengths
