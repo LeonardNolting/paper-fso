@@ -235,19 +235,17 @@ TODO discuss vertical error distribution
 TODO Google vs RGE Alti
 
 \subsection{Digital Surface Model}\label{subsec:digital-surface-model}
-LiDAR generally good because similar wavelengths
+LiDAR is generally well-suited for FSO LoS checks as they commonly share the same near-infrared band [TODO quote/show].
 
-The LiDAR impulse data by IGN France is taken periodically from planes...
+The LiDAR impulse data by IGN has an average of $10 impulses/m^2$ with vertical accuracy of $~10 cm$ and horizontal accuracy of $~50 cm$.
 
-only from top
+The DSM output is generally delivered at a grid space of $50 cm$, lowering resolution by a factor of $2.5$.
+
+Modeling only the surface, it also crops information about the shape of objects underneath the surface, leading to any gaps through which a LoS could pass, for example through the Eiffel Tower or underneath bridges, not being modeled.
 
 data freshness
 
-temporary obstructions (foliage!?), variation: at any point, free space may be 12\%, but over time if that changes, the permanently free space may only be 10\%
-
-precision
-
-DSM: precision even lower, points summarized to pixels
+temporary obstructions (foliage!? cranes)
 
 NODATA, censored areas
 
