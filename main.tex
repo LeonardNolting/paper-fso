@@ -95,8 +95,10 @@ We continue by introducing our implementation for line-of-sight analysis, includ
 % No background chapter (FSO background is briefly introduced in introduction - "what is FSO and its main challenge")
 
 \section{Implementation}\label{sec:implementation}
-\subsection{Data Sources}\label{subsec:data-sources}
-explain that links = between nodes => only need nodes
+TODO
+
+\subsection*{Data Sources}\label{subsec:data-sources}
+explain that links = between nodes ⇒ only need nodes
 
 cell sites source? (explain difference between suport and antenna) (fixes country to France for later for obstruction model choice)
 
@@ -115,7 +117,7 @@ France public option LiDAR HD: open / free access, good nationwide coverage, hig
 
 France also: processed format DSMs. explain DSMs. good compromise for us: standardized, simple format (2D array), easy to manage (lower storage), cell sites generally high (not underneath obstructions)
 
-\subsection{Algorithm}\label{subsec:algorithm}
+\subsection*{Algorithm}\label{subsec:algorithm}
 Conceptually, computing collisions of a line with the obstruction model requires calculating which pixels of the DSM raster it crosses and checking if the surface at any of those pixels is higher than the line.
 
 Line rasterization algorithms from computer graphics, such as Bresenham's and Xiaolin Wu's algorithm, solve a similar problem of painting pixels between two lines [TODO quote].
@@ -154,6 +156,8 @@ TODO
 
 \subsection{Parameters}\label{subsec:parameters}
 Setup, what did we test exactly (parameters)
+
+all links are assumed to be bidirectional / full-duplex
 
 \subsection{Connectedness}\label{subsec:connectedness}
 Given those parameters, 12.2\% of all candidate links are unobstructed and therefore theoretically suitable for an FSO link.
@@ -199,13 +203,15 @@ As stated in~\cref{subsec:contributions2}, complete capacity simulations are out
 \end{figure}
 
 \subsection{Resilience}\label{subsec:resilience}
-connected components may not be very stable (single point of failure?) → k-connectivity, Menger's theorem, disjoint paths (again for operator cooperations and full network?)
+For stronger connectivity guarantees, edge connectivity analysis shows how many link failures a connected component can tolerate the least while staying connected.
+Menger's theorem additionally states that in a k-edge connected graph, any pair of nodes is connected by k disjoint paths.
+Comparing to the previous connected component based on the combined network of two operators, a two-edge connected component that covers the city of Paris appears at 430 m.
+With nodes from all four operators, only links up to 360 m are needed.
 
-redundancy per node, degrees (is that implied by k-connectivity?), link failure resilience
-
-While k-edge connectivity protects from random link failures, FSO link failures can be spatially correlated.
-For a worst-case analysis, we look at each individual node and calculate the minimum angle $\alpha$ that a single rectangular obstacle needs to cover in order to block all LoS, effectively completely isolating the node.
-Translating this to an average-case, in~\cref{fig:todo} we see the probability of a randomly placed obstacle of varying $\alpha$ isolating a node. TODO name values
+While k-edge connected components are protected from random link failures, FSO link failures resulting from LoS-interruptions are spatially correlated.
+Depending on the size of the obstacle and the angular diversity of links connecting nodes, a single obstacle can block several or all links of a node at once.
+For a worst-case analysis, we look at each individual node and calculate the minimum angle $\alpha$ that a single rectangular obstacle needs to cover in order to block all LoS, effectively completely isolating the node. TODO numbers.
+Translating this to an average-case, in~\cref{fig:todo} we see the probability of a randomly placed obstacle of varying $\alpha$ isolating a node. TODO numbers.
 
 \subsection{Hop Counts}\label{subsec:hop-counts}
 TODO shorten (end)
@@ -249,7 +255,7 @@ For around 9500 cell sites in the area around Paris alone, correcting the locati
 Automating the correction based on visuals from Google Street View and EMR measurements from OpenCelliD may work, but is limited by the incomplete availability of that data and significant complexity.
 We choose to take a random sample subset of the support locations and correct their position based on Google Maps 3D data where the data quality is sufficient to indicate the exact three-dimensional position of the highest point of the support.
 400 (4\%) of database entries were validated which show a horizontal deviation of...TODO...
-These data points also show a X\% improvement for building antenna supports through the heuristic developed in~\cref{sec:implementation} that ``snaps'' points to the closest building.
+Based on these verified values, the heuristic developed in~\cref{subsec:data-sources} snapping building antenna supports to the nearest building shows an improvement of X\%.
 For towers and masts, a heuristic is to assume those locations to be the highest surface point in close proximity of the database location, reusing the DSM.
 However, analysis shows that thin support masts are not reliably picked up by the model.
 
@@ -259,8 +265,8 @@ TODO Google vs RGE Alti
 
 \subsection{Digital Surface Model}\label{subsec:digital-surface-model}
 LiDAR is generally well-suited for FSO LoS checks as they commonly share the same near-infrared band [TODO quote/show].
-The LiDAR impulse data by IGN has an average of $10 impulses/m^2$ with vertical accuracy of $~10 cm$ and horizontal accuracy of $~50 cm$.
-The DSM output is generally delivered at a grid space of $50 cm$, lowering resolution by a factor of $2.5$.
+The LiDAR impulse data by IGN has an average of $10\ impulses/m^2$ with vertical accuracy of $~10\ cm$ and horizontal accuracy of $~50\ cm$.
+The DSM output is generally delivered at a grid space of $50\ cm$, lowering resolution by a factor of $2.5$.
 Modeling only the surface, it also crops information about the shape of objects underneath the surface, leading to any gaps through which a LoS could pass, for example through the Eiffel Tower or underneath bridges, not being modeled.
 
 The data has been collected since 2021 and constitutes only a momentary snapshot of obstructions.
