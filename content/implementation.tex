@@ -46,27 +46,21 @@ Sampling points along the line at a rate of two samples per pixel shows accuracy
 The Python library rasterio offers a function masking exactly all pixels touched by a line, which in turn calls to GDAL~\cite{gdal}.
 The fastest, accurate, CPU-based method tested is ``A Fast Voxel Traversal Algorithm'' by Amanatides and Woo~\cite{amanatides1987fast}.
 Hardware accelerators may also be used, but early-exit performance gains will suffer from shared program counters.
+Invoked with data from this document, these algorithms are ray-bound.
 
-\todo{Write \& shorten OptiX talk}
-NVIDIA and other graphics processing unit producers offer dedicated ray tracing offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware.
-Our tests show that the main bottleneck becomes the memory transfer of the DSM to the accelerator, the time spent on building the AS and the additional memory occupied by the AS.
-The DSM can be seen as a two-dimensional grid of ``pixel pillars'' - each pixel a cuboid stretching from -inf to the surface height at the pixel.
-Converting the DSM to triangle primitives without quality loss requires two triangles per visible surface, which are laid out as one rectangle.
-Since the top surface of a pixel is always visible, and the bottom pixel is always covered by the sides of this and neighboring pixels and is never visible, and assuming that on average two sides are visible per pixel, this results in six triangles per pixel.
-... 3 floats per triangle, 1 after compaction, too many values, memory inflation ...
-Using instance acceleration structures (IAS), which allow replicating one AS by shifting and scaling it, may reduce this memory inflation.
-NVIDIA supports custom primitives for its ray tracing platform for any objects that cannot be modeled adequately with triangles.
-Custom primitives assign an axis-aligned bounding box (AABB) containing the primitive and a custom shader, which will be invoked when a ray intersects the AABB. The ray tracing check is still offloaded and only hands over to the shader for an intersection with the AABB.
-Since aforementioned ``pixel pillars'' are AABBs, they can be transformed to custom primitives.
-Whenever the intersection shader is called, it already marks an intersection without further computation, and the line can immediately be marked as blocked.
-Memory inflation can also be combated by smoothing out the model creating a triangulated RSG (regular square grid).
-Each pixel is converted to one triangle that
-... conservative conversion (always the maximum) ...
-... performance: 6-8 gigarays per second for one 1*1km tile, but lines have to split up over tiles because AS cannot grow much larger ...\
-\todo{mention more explicitly that the CPU version generally is line-bound, whereas the RT version is area-bound}
+NVIDIA and other graphics processing unit producers offer dedicated ray-tracing (RT) offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware\todo{cite OptiX}.
+Our tests show that the main bottlenecks become the time spent on building the AS and the additional memory occupied by the AS.
+The DSM is a stepped regular square grid (RSG), where each pixel can be modeled as a cuboid obstacle built from two triangles per surface.
+This inflates memory, even after compressing the AS, but maintains accuracy.
+Generating one such cuboid and merely replicating and shifting it using instance acceleration structures (IAS) reduces memory consumption.
+Alternatively, instead of triangles, custom primitives define an intersection shader and a cuboid axis-aligned bounding box (AABB).
+The RT pipeline will run in hardware until the AABB is intersected, at which point work is handed off to the intersection shader.
+This is an efficient approach, because the DSM pixels inherently are AABBs, thus the call to the intersection shader always terminates the ray-trace without further software instructions.
+A more memory-efficient approach is to convert the DSM to a triangulated RSG, which is a basic conversion and thus supported across GPU architectures, but smoothes the surface reducing accuracy~\cite{viscomp}.
+This approach processes billions of lines per second on an NVIDIA RTX 5090 and, with our data, is bound by the AS construction.
 
-The choice of implementation between CPU, CUDA and OptiX depends primarily on the size of the datasets and region considered, the density of lines per area, implementation complexity and hardware accelerator availability.
-For the data and area considered in this paper, the CPU version shows sufficient performance, but derived work with significantly more lines to check will benefit from a hardware ray-traced version.
+The choice of implementation between CPU, GPGPU and hardware RT depends primarily on the size of the datasets and region considered, the density of lines per area, implementation complexity and hardware accelerator availability.
+For the data and area considered in this paper, the CPU version shows sufficient performance, but derived work with significantly more lines to check will benefit from a hardware RT version.
 
 \subsection*{Adaptability}\label{subsec:adaptability}
 \todo[inline]{Write or remove adaptability}
