@@ -22,6 +22,8 @@
 \setlength{\marginparwidth}{1.5in}    % Give the todo notes permission to stretch out
 % =====================================================================
 \usepackage[colorinlistoftodos]{todonotes} % Disable for submission like \usepackage[colorinlistoftodos, disable]{todonotes}
+\todostyle{easy}{color=green!40}
+\todostyle{blocked}{color=red!40}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
 T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -57,7 +59,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     \maketitle
 
     \begin{abstract}
-        \todo[inline]{Write abstract}
+        \todo[easy, inline]{Write abstract}
         This document is a model and instructions for \LaTeX.
         This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes,
         or Math in Paper Title or Abstract.
@@ -90,7 +92,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     relays: also widely accepted as a very, if not the most effective counter-measurement
 
     \subsection*{Contributions}\label{subsec:contributions2}
-    \todo[inline]{Write Contributions}
+    \todo[easy, inline]{Write Contributions}
     Close to existing contributions chapter
 
     What do we do, raw
@@ -112,7 +114,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     - → Derive required link lengths from reality of mesh density
 
     \subsection*{Paper Outline}\label{subsec:structure}
-    \todo[inline]{Write Paper Outline}
+    \todo[easy, inline]{Write Paper Outline}
     We continue by introducing our implementation for line-of-sight analysis, including data source selection, preprocessing steps, a comparison of ray tracing algorithms, and a note on adapting this implementation to different geographic areas and cell site locations.
 
     ... evaluation ...
@@ -127,10 +129,10 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     \input{content/implementation}
 
     \section{Evaluation}\label{sec:evaluation}
-    \todo[inline]{Write evaluation transition}
+    \todo[easy, inline]{Write evaluation transition}
 
     \subsection{Parameters}\label{subsec:parameters}
-    \todo[inline]{Write parameters}
+    \todo[easy, inline]{Write parameters}
     Setup, what did we test exactly (parameters)
 
     all links are assumed to be bidirectional / full-duplex
@@ -205,7 +207,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     Running the same analysis on a connected component from \textless1000 m links during worst-case conditions, which is subsequently larger, rewiring 10\% to 2000 m barely reduces average hop counts by 1/4.
     Best-case reconfigurations up to 10000 m reduce the average to 5 hops, and barely any paths exceed 20 nodes.
 
-    \todo{how to integrate results of different cities (depends on what the results look like in the first place)}
+    \todo[blocked]{how to integrate results of different cities (depends on what the results look like in the first place)}
 
 
     \section{Validation}\label{sec:validation}
@@ -217,16 +219,16 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     For around 9500 cell sites in the area around Paris alone, correcting the locations by visiting each is not feasible.
     Automating the correction based on visuals from Google Street View and EMR measurements from OpenCelliD may work, but is limited by the incomplete availability of that data and significant complexity.
     We choose to take a random sample subset of the support locations and correct their position based on Google Maps 3D data where the data quality is sufficient to indicate the exact three-dimensional position of the highest point of the support.
-    400 (4\%) of database entries were validated which show a horizontal deviation of...... \todo{Better error analysis (wait for new values)}
+    400 (4\%) of database entries were validated which show a horizontal deviation of...... \todo[blocked]{Better error analysis (wait for new values)}
     Based on these verified values, the heuristic developed in~\cref{subsec:data-sources} snapping building antenna supports to the nearest building shows an improvement of X\%.
     For towers and masts, a heuristic is to assume those locations to be the highest surface point in close proximity of the database location, reusing the DSM.
     However, analysis shows that thin support masts are not reliably picked up by the model.
 
-    \todo[inline]{Google vs RGE Alti}
+    \todo[easy, inline]{Google vs RGE Alti}
 
     \subsection{Digital Surface Model}\label{subsec:digital-surface-model}
     LiDAR is generally well-suited for FSO LoS checks as they commonly share the same near-infrared band\todo{show / quote / is this necessary?}.
-    The LiDAR impulse data by IGN has an average of $10\ impulses/m^2$ with vertical accuracy of $~10\ cm$ and horizontal accuracy of $~50\ cm$.
+    The LiDAR impulse data by IGN has an average of $10\ impulses/m^2$ with vertical accuracy of $~10\ cm$ and horizontal accuracy of $~50\ cm$~\cite{lidar}.
     The DSM output is generally delivered at a grid space of $50\ cm$, lowering resolution by a factor of $2.5$.
     Modeling only the surface, it also crops information about the shape of objects underneath the surface, leading to any gaps through which a LoS could pass, for example through the Eiffel Tower or underneath bridges, not being modeled.
 

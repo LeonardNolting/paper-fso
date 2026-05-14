@@ -1,5 +1,5 @@
 \section{Implementation}\label{sec:implementation}
-\todo[inline]{Write Implementation transition}
+\todo[easy, inline]{Write Implementation transition}
 
 \subsection*{Data Sources}\label{subsec:data-sources}
 A candidate link is a link whose line-of-sight availability will be checked in the next step.
@@ -29,7 +29,7 @@ Availability in France varies.
 The evaluated options employ unpredictable, recurring or undisclosed pricing models\todo{should I refer to the tested options here through citations?}.
 
 IGN also offers the public and free LiDAR HD program.
-It covers almost the entirety of metropolitan France at $10\ impulses/m^2$ with a total of 4 PB of data\todo{quote?}.
+It covers almost the entirety of metropolitan France at $10\ impulses/m^2$ with a total of 4 PB of data~\cite{lidar}.
 
 A Digital Surface Model (DSM) is a map raster where each pixel encodes the height of the first and highest LiDAR return, capturing the surface elevation of the covered area.
 IGN provides a DSM derived product based on their LiDAR HD program.
@@ -48,7 +48,7 @@ The fastest, accurate, CPU-based method tested is ``A Fast Voxel Traversal Algor
 Hardware accelerators may also be used, but early-exit performance gains will suffer from shared program counters.
 Invoked with data from this document, these algorithms are ray-bound.
 
-NVIDIA and other graphics processing unit producers offer dedicated ray-tracing (RT) offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware\todo{cite OptiX}.
+NVIDIA and other graphics processing unit producers offer dedicated ray-tracing (RT) offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware~\cite{optix}.
 Our tests show that the main bottlenecks become the time spent on building the AS and the additional memory occupied by the AS.
 The DSM is a stepped regular square grid (RSG), where each pixel can be modeled as a cuboid obstacle built from two triangles per surface.
 This inflates memory, even after compressing the AS, but maintains accuracy.
@@ -63,4 +63,4 @@ The choice of implementation between CPU, GPGPU and hardware RT depends primaril
 For the data and area considered in this paper, the CPU version shows sufficient performance, but derived work with significantly more lines to check will benefit from a hardware RT version.
 
 \subsection*{Adaptability}\label{subsec:adaptability}
-\todo[inline]{Write or remove adaptability}
+\todo[easy, inline]{Write or remove adaptability}
