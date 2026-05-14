@@ -130,9 +130,9 @@ Simulating realistic lines-of-sight requires a model of obstructions of the worl
 We deliberately decide against statistical models, such as the Manhattan Grid Model, in favor of sensor-based models.
 
 OpenStreetMap, as well as the national mapping agency of France (IGN), which is the country of origin of the cell location database, have datasets of building footprints along with a single height value.
-This approach is limited to modeling buildings, irrespective of their shape, as cuboids, and misses other obstructions, such as vegetation.
-It has been used in previous works, see~\cref{subsec:related-work}.
-Both data sources also lack values for some buildings.
+This approach has been used in previous works, see~\cref{subsec:related-work}.
+Irrespective of their shape, with this method, buildings are limited to be modeled as cuboids, and other obstructions are not captured, such as vegetation or bridges.
+Both data sources also lack values for some buildings around Paris.
 
 Commercial options exist, offering increased accuracy based on LiDAR measurements, as well as raw LiDAR point clouds, post-processed formats thereof and multi-sensor measurements.
 Availability in France varies.
