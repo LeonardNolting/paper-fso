@@ -150,12 +150,12 @@ It also reduces the data to a more manageable amount by around three orders of m
 \subsection*{Algorithm}\label{subsec:algorithm}
 Conceptually, computing collisions of a line with the obstruction model requires calculating which pixels of the DSM raster it crosses and checking if the surface at any of those pixels is higher than the line.
 
-Line rasterization algorithms from computer graphics, such as Bresenham's and Xiaolin Wu's algorithm, solve a similar problem of painting pixels between two lines [TODO quote].
+Line rasterization algorithms from computer graphics, such as Bresenham's and Xiaolin Wu's algorithm, solve a similar problem of painting pixels between two lines~\cite{bresenham, xiaolinwu}.
 Designed for another purpose, however, they do not paint exactly all pixels touched by the line, skipping over potential obstacles [TODO show? figure? or good without deeper explanation?].
 Sampling points along the line at a rate of two samples per pixel shows accuracy gains at similar speeds, but still misses pixels.
 The Python library rasterio offers a function masking exactly all pixels touched by a line, which in turn calls to GDAL [TODO quote].
-Tests show the fastest accurate CPU-based method to be ``A Fast Voxel Traversal Algorithm'' by Amanatides and Woo [TODO quote].
-... CUDA ...
+Tests show the fastest accurate CPU-based method to be ``A Fast Voxel Traversal Algorithm'' by Amanatides and Woo~\cite{amanatides1987fast}.
+NVIDIA CUDA accelerated programs may also be used, but early-exit performance gains will suffer from shared program counters.
 
 NVIDIA and other graphics processing unit producers offer dedicated ray tracing offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware.
 Our tests show that the main bottleneck becomes the memory transfer of the DSM to the accelerator, the time spent on building the AS and the additional memory occupied by the AS.
@@ -194,7 +194,7 @@ Given those parameters, 12.2\% of all candidate links are unobstructed and there
 As worst-case free-space optical link quality degrades with increasing link length, our focus lies on short links.
 On one side, the probability of an obstacle blocking the LoS of a link grows with increasing link length, favoring short links over long links.
 On the other side, the further out you go from each individual node, the more candidate links can be found for it, leading to more long candidate links.
-Both effects in combination lead to the distribution shown in~\cref{fig:link_lengths_pdf}, which particularly shows that only a small fraction of clear links are <400m long.
+Both effects in combination lead to the distribution shown in~\cref{fig:link_lengths_pdf}, which particularly shows that only a small fraction of clear links are \textgreater400 m long.
 
 \begin{figure}[htbp]
     \centerline{\includegraphics[width=\columnwidth]{figures/stats/link_lengths_pdf}}
