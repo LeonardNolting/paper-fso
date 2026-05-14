@@ -57,7 +57,7 @@ juan-antonio.cordero-fuertes@polytechnique.edu}
 \maketitle
 
 \begin{abstract}
-\todo{Write abstract}
+\todo[inline]{Write abstract}
 This document is a model and instructions for \LaTeX.
 This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes, 
 or Math in Paper Title or Abstract.
@@ -70,7 +70,7 @@ Free-Space Optical Communication (FSO), mobile networks, backhaul, line-of-sight
 \input{content/introduction}
 
 \subsection*{Related Work}\label{subsec:related-work}
-\todo{Write Related Work}
+\todo[inline]{Write Related Work}
 industry: show feasibility of urban FSO
 
 line-of-sight:
@@ -90,7 +90,7 @@ Sadiku et al.~provide a range of 200 to 2000 m~\cite{fsooverview}, and Chaudhary
 relays: also widely accepted as a very, if not the most effective counter-measurement
 
 \subsection*{Contributions}\label{subsec:contributions2}
-\todo{Write Contributions}
+\todo[inline]{Write Contributions}
 Close to existing contributions chapter
 
 What do we do, raw
@@ -112,7 +112,7 @@ Contrast to Related Work:
 - → Derive required link lengths from reality of mesh density
 
 \subsection*{Paper Outline}\label{subsec:structure}
-\todo{Write Paper Outline}
+\todo[inline]{Write Paper Outline}
 We continue by introducing our implementation for line-of-sight analysis, including data source selection, preprocessing steps, a comparison of ray tracing algorithms, and a note on adapting this implementation to different geographic areas and cell site locations.
 
 ... evaluation ...
@@ -124,7 +124,7 @@ We continue by introducing our implementation for line-of-sight analysis, includ
 % No background chapter (FSO background is briefly introduced in introduction - "what is FSO and its main challenge")
 
 \section{Implementation}\label{sec:implementation}
-\todo{Write Implementation transition}
+\todo[inline]{Write Implementation transition}
 
 \subsection*{Data Sources}\label{subsec:data-sources}
 A candidate link is a link whose line-of-sight availability will be checked in the next step.
@@ -151,10 +151,10 @@ Both data sources also lack values for some buildings around Paris.
 
 Commercial options exist, offering increased accuracy based on LiDAR measurements, as well as raw LiDAR point clouds, post-processed formats thereof and multi-sensor measurements.
 Availability in France varies.
-The evaluated options employ unpredictable, recurring or undisclosed pricing models [TODO should I refer to the tested options here through citations?].
+The evaluated options employ unpredictable, recurring or undisclosed pricing models\todo{should I refer to the tested options here through citations?}.
 
 IGN also offers the public and free LiDAR HD program.
-It covers almost the entirety of metropolitan France at $10\ impulses/m^2$ with a total of 4 PB of data [TODO quote?].
+It covers almost the entirety of metropolitan France at $10\ impulses/m^2$ with a total of 4 PB of data\todo{quote?}.
 
 A Digital Surface Model (DSM) is a map raster where each pixel encodes the height of the first and highest LiDAR return, capturing the surface elevation of the covered area.
 IGN provides a DSM derived product based on their LiDAR HD program.
@@ -168,10 +168,11 @@ Conceptually, computing collisions of a line with the obstruction model requires
 Line rasterization algorithms from computer graphics, such as Bresenham's and Xiaolin Wu's algorithm, solve a similar problem of painting pixels between two lines~\cite{bresenham, xiaolinwu}.
 Designed for another purpose, however, they do not paint exactly all pixels touched by the line, skipping over potential obstacles\todo{show? figure? or good without deeper explanation?}.
 Sampling points along the line at a rate of two samples per pixel shows accuracy gains at similar speeds, but still misses pixels.
-The Python library rasterio offers a function masking exactly all pixels touched by a line, which in turn calls to GDAL [TODO quote].
+The Python library rasterio offers a function masking exactly all pixels touched by a line, which in turn calls to GDAL~\cite{gdal}.
 Tests show the fastest accurate CPU-based method to be ``A Fast Voxel Traversal Algorithm'' by Amanatides and Woo~\cite{amanatides1987fast}.
 NVIDIA CUDA accelerated programs may also be used, but early-exit performance gains will suffer from shared program counters.
 
+\todo{Write \& shorten OptiX talk}
 NVIDIA and other graphics processing unit producers offer dedicated ray tracing offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware.
 Our tests show that the main bottleneck becomes the memory transfer of the DSM to the accelerator, the time spent on building the AS and the additional memory occupied by the AS.
 The DSM can be seen as a two-dimensional grid of ``pixel pillars'' - each pixel a cuboid stretching from -inf to the surface height at the pixel.
@@ -187,24 +188,25 @@ Memory inflation can also be combated by smoothing out the model creating a tria
 Each pixel is converted to one triangle that
 ... conservative conversion (always the maximum) ...
 ... performance: 6-8 gigarays per second for one 1*1km tile, but lines have to split up over tiles because AS cannot grow much larger ...\
-
-TODO: mention more explicitly that the CPU version generally is line-bound, whereas the RT version is area-bound
+\todo{mention more explicitly that the CPU version generally is line-bound, whereas the RT version is area-bound}
 
 The choice of implementation between CPU, CUDA and OptiX depends primarily on the size of the datasets and region considered, the density of lines per area, implementation complexity and hardware accelerator availability.
 For the data and area considered in this paper, the CPU version shows sufficient performance, but derived work with significantly more lines to check will benefit from a hardware ray-traced version.
 
 \subsection*{Adaptability}\label{subsec:adaptability}
-TODO
+\todo[inline]{Write or remove adaptability}
 
 \section{Evaluation}\label{sec:evaluation}
-TODO
+\todo[inline]{Write evaluation transition}
 
 \subsection{Parameters}\label{subsec:parameters}
+\todo[inline]{Write parameters}
 Setup, what did we test exactly (parameters)
 
 all links are assumed to be bidirectional / full-duplex
 
 \subsection{Connectedness}\label{subsec:connectedness}
+\todo{Shorten}
 Given those parameters, 12.2\% of all candidate links are unobstructed and therefore theoretically suitable for an FSO link.
 As worst-case free-space optical link quality degrades with increasing link length, our focus lies on short links.
 On one side, the probability of an obstacle blocking the LoS of a link grows with increasing link length, favoring short links over long links.
@@ -225,10 +227,13 @@ Using links of more than $1000m$ yields diminishing returns in newly connected n
 
 \begin{figure}[htbp]
     \centerline{\includegraphics[width=\columnwidth]{figures/stats/connected_nodes_over_length}}
-    \caption{Fraction of nodes with at least one line-of-sight with varying maximum link lengths. TODO also show a curve "Fraction of nodes with >2 edges" and one "Fraction of nodes with >5 edges" or so}
+    \caption{Fraction of nodes with at least one line-of-sight with varying maximum link lengths.}
     \label{fig:connected_nodes_over_length}
 \end{figure}
 
+\todo{also show a curve ``Fraction of nodes with \textgreater2 edges'' and one ``Fraction of nodes with \textgreater5 edges'' or so}
+
+\todo{Mention impact of degree of urbanization}
 urban → more dense → look at urban nodes specifically?
 
 There are four major companies operating cell sites across France.
@@ -236,7 +241,7 @@ Uniformly, their networks converge to a single large connected component with li
 Moreover, as motivated by the analysis of the degree of urbanization, a single connected component spans the city of Paris much earlier at 500 m.
 By combining the cell sites of any two operators, the component consistently already shows up at $<$ 410 m.
 A similar connected component emerges already at 315 m when all four operators pool their topologies.
-We consider the area that is spun up by the concave hull of the component, generated by [TODO https://github.com/mapbox/concaveman] and visible in~\cref{fig:components_300m}.
+We consider the area that is spun up by the concave hull of the component, generated by the concaveman JavaScript library \todo{cite https://github.com/mapbox/concaveman} and visible in~\cref{fig:components_300m}.
 In the entire region, we saw that ~3/4 of nodes have a line-of-sight, but inside the hull of the component, less than 5\% are disconnected.
 Compared to the overall best disconnection ratio at 10 km, 2.4\%, this implies that providing essential connectivity for a mobile backhaul backbone for the city of Paris already works nearly as well at 300 m as it will with longer links.
 As stated in~\cref{subsec:contributions2}, complete capacity simulations are out of scope of this thesis.
@@ -255,16 +260,15 @@ With nodes from all four operators, only links up to 360 m are needed.
 
 While k-edge connected components are protected from random link failures, FSO link failures resulting from LoS-interruptions are spatially correlated.
 Depending on the size of the obstacle and the angular diversity of links connecting nodes, a single obstacle can block several or all links of a node at once.
-For a worst-case analysis, we look at each individual node and calculate the minimum angle $\alpha$ that a single rectangular obstacle needs to cover in order to block all LoS, effectively completely isolating the node. TODO numbers.
-Translating this to an average-case, in~\cref{fig:todo} we see the probability of a randomly placed obstacle of varying $\alpha$ isolating a node. TODO numbers.
+For a worst-case analysis, we look at each individual node and calculate the minimum angle $\alpha$ that a single rectangular obstacle needs to cover in order to block all LoS, effectively completely isolating the node. \todo{Add numbers / graph}
+Translating this to an average-case, in~\cref{fig:todo} we see the probability of a randomly placed obstacle of varying $\alpha$ isolating a node. \todo{Add numbers / graph}
 
 \subsection{Hop Counts}\label{subsec:hop-counts}
-TODO shorten (end)
-
+\todo{Shorten towards the end}
 While nodes grouped up in a connected component does mean that they can communicate with each other, the path is at risk of containing a large number of hops.
 The topology of all nodes and links up to 300 m contains shortest paths of more than 60 hops.
 This is an inherent limitation of the relaying approach during worst-case conditions.
-During best-case conditions, however, FSO link distances are less constrained [TODO quote - can I find upper limits? a 100km experiment for instance?].
+During best-case conditions, however, transmission ranges of 40 km have been shown~\cite{Willitsford:24}.
 FSO has the unique ability to reconfigure its link by physically steering the transmitter to point at another receiver in ``time scales of ms-s''~\cite{invited}.
 This rewiring process is also known as the Small World phenomenon~\cite{smallworld}.
 Key insight of the Watts and Strogatz model is that a highly clustered graph only needs a small percentage of shortcut links to achieve a high reduction in the ``average degrees of separation'', here hop count, while maintaining the clustering.~\cref{fig:hop_counts_rewired} shows that on our connected component by randomly selecting lines in the topology, removing them from the graph and adding a new, random line of up to $10km$ length to simulate a best-case scenario.
@@ -288,7 +292,7 @@ Reconfiguring even every tenth link to twice the length, $2km$, only decreases t
 However, we see in~\cref{fig:hop_counts_1_percent_1000m} vastly improved results for 1\% reconfigurations with links of unlimited length and $10km$.
 Very few to no paths are longer than 20 hops and the average drops below 10.
 
-TODO: how to integrate results of different cities (depends on what the results look like in the first place)
+\todo{how to integrate results of different cities (depends on what the results look like in the first place)}
 
 \section{Validation}\label{sec:validation}
 We analyze the limitations of the input data, our methodology and the implementation.
@@ -299,17 +303,15 @@ However, more reliable data sources are not available.
 For around 9500 cell sites in the area around Paris alone, correcting the locations by visiting each is not feasible.
 Automating the correction based on visuals from Google Street View and EMR measurements from OpenCelliD may work, but is limited by the incomplete availability of that data and significant complexity.
 We choose to take a random sample subset of the support locations and correct their position based on Google Maps 3D data where the data quality is sufficient to indicate the exact three-dimensional position of the highest point of the support.
-400 (4\%) of database entries were validated which show a horizontal deviation of...TODO...
+400 (4\%) of database entries were validated which show a horizontal deviation of...... \todo{Better error analysis (wait for new values)}
 Based on these verified values, the heuristic developed in~\cref{subsec:data-sources} snapping building antenna supports to the nearest building shows an improvement of X\%.
 For towers and masts, a heuristic is to assume those locations to be the highest surface point in close proximity of the database location, reusing the DSM.
 However, analysis shows that thin support masts are not reliably picked up by the model.
 
-TODO discuss vertical error distribution
-
-TODO Google vs RGE Alti
+\todo[inline]{Google vs RGE Alti}
 
 \subsection{Digital Surface Model}\label{subsec:digital-surface-model}
-LiDAR is generally well-suited for FSO LoS checks as they commonly share the same near-infrared band [TODO quote/show].
+LiDAR is generally well-suited for FSO LoS checks as they commonly share the same near-infrared band\todo{show / quote / is this necessary?}.
 The LiDAR impulse data by IGN has an average of $10\ impulses/m^2$ with vertical accuracy of $~10\ cm$ and horizontal accuracy of $~50\ cm$.
 The DSM output is generally delivered at a grid space of $50\ cm$, lowering resolution by a factor of $2.5$.
 Modeling only the surface, it also crops information about the shape of objects underneath the surface, leading to any gaps through which a LoS could pass, for example through the Eiffel Tower or underneath bridges, not being modeled.
@@ -320,9 +322,10 @@ Volatile and future obstructions are not or inconsistently modeled, such as road
 A total of 0.046\% of the area considered takes on the ``nodata'' value, which we consider negligible.
 ``Zones Interdites à la Captation Aérienne des Données'' (ZICAD, restricted areas for aerial data collection) are either included in the nodata areas or censored through interpolation from surrounding data.
 
-TODO how much area is NODATA across all cities checked? update the 0.046\%
+\todo{how much area is NODATA across all cities checked? update the 0.046\% as that's for Paris only}
 
 \subsection{Numerical tradeoffs}\label{subsec:numerical-tradeoffs}
+\todo[inline]{Write numerical tradeoffs}
 earth's curvature + atmospheric refraction
 
 coordinate conversions
@@ -330,6 +333,7 @@ coordinate conversions
 floating point?
 
 \section{Conclusion}\label{sec:conclusion}
+\todo[inline]{Write conclusion}
 Pick measured values back up from Related Work, and put in relation to our results (same as parts of ch:discussion from thesis)
 
 → What does this mean for the future?
