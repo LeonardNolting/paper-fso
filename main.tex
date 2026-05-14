@@ -105,17 +105,25 @@ cell sites source? (explain difference between suport and antenna) (fixes countr
 preprocessing - snapping and filtering
 
 Simulating realistic lines-of-sight requires a model of obstructions of the world.
+We deliberately decide against statistical models, such as the Manhattan Grid Model, in favor of sensor-based models.
 
-- Statistical models (Manhattan grid)
+OpenStreetMap, as well as the national mapping agency of France (IGN), which is the country of origin of the cell location database, have datasets of building footprints along with a single height value.
+This approach is limited to modeling buildings as cuboids, and misses other obstructions, such as vegetation.
+It has been used in previous works, see~\cref{subsec:related-work}.
+Both data sources also lack values for some buildings.
 
-- OpenStreetMap building footprints + height = LoD1
+Commercial options exist, offering increased accuracy based on LiDAR measurements, as well as raw LiDAR point clouds, post-processed formats thereof and multi-sensor measurements.
+Availability in France varies.
+The evaluated options employ unpredictable, recurring or undisclosed pricing models [TODO should I refer to the tested options here through citations?].
 
-- Commercial options exist which offer increased accuracy based on LiDAR measurements, as well as raw LiDAR point clouds, post-processed formats thereof and multi-sensor measurements. Pricing models? (subscription; root tile request for 3h; not disclosed)
+IGN also offers the public and free LiDAR HD program.
+It covers almost the entirety of metropolitan France at $10\ impulses/m^2$ with a total of 4 PB of data [TODO quote?].
 
-since nodes from France, what about specifically in France?
-France public option LiDAR HD: open / free access, good nationwide coverage, high accuracy - by IGN, the French national mapping agency
+A Digital Surface Model (DSM) is a map raster where each pixel encodes the height of the first and highest LiDAR return, capturing the surface elevation of the covered area.
+IGN provides a DSM derived product based on their LiDAR HD program.
 
-France also: processed format DSMs. explain DSMs. good compromise for us: standardized, simple format (2D array), easy to manage (lower storage), cell sites generally high (not underneath obstructions)
+We choose this product because DSMs are a standardized, non-proprietary format which may have public data sources in other countries.
+It also reduces the data to a more manageable amount by around three orders of magnitude compared to the raw LiDAR point cloud, while maintaining high resolution.
 
 \subsection*{Algorithm}\label{subsec:algorithm}
 Conceptually, computing collisions of a line with the obstruction model requires calculating which pixels of the DSM raster it crosses and checking if the surface at any of those pixels is higher than the line.
