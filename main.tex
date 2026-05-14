@@ -23,331 +23,335 @@
 % =====================================================================
 \usepackage[colorinlistoftodos]{todonotes} % Disable for submission like \usepackage[colorinlistoftodos, disable]{todonotes}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Line-of-Sight Analysis for Urban Free-Space Optical Communication\\}
+    \title{Line-of-Sight Analysis for Urban Free-Space Optical Communication\\}
 
-\author{\IEEEauthorblockN{1\textsuperscript{st} Leonard Nolting}
-\IEEEauthorblockA{
-    \textit{Chair of Communication Networks} \\
+    \author{\IEEEauthorblockN{1\textsuperscript{st} Leonard Nolting}
+    \IEEEauthorblockA{
+        \textit{Chair of Communication Networks} \\
+        \textit{Technical University of Munich}\\
+        Munich, Germany \\
+        leonard.nolting@tum.de}
+    \and
+    \IEEEauthorblockN{2\textsuperscript{nd} Kevin Jiokeng}
+    \IEEEauthorblockA{\textit{Laboratoire d'Informatique} \\
+    \textit{École Polytechnique}\\
+    Palaiseau, France \\
+    kevin.jiokeng@polytechnique.edu}
+    \and
+    \IEEEauthorblockN{3\textsuperscript{rd} Hansini Vijayaraghavan}
+    \IEEEauthorblockA{\textit{Chair of Communication Networks} \\
     \textit{Technical University of Munich}\\
     Munich, Germany \\
-    leonard.nolting@tum.de}
-\and
-\IEEEauthorblockN{2\textsuperscript{nd} Kevin Jiokeng}
-\IEEEauthorblockA{\textit{Laboratoire d'Informatique} \\
-\textit{École Polytechnique}\\
-Palaiseau, France \\
-kevin.jiokeng@polytechnique.edu}
-\and
-\IEEEauthorblockN{3\textsuperscript{rd} Hansini Vijayaraghavan}
-\IEEEauthorblockA{\textit{Chair of Communication Networks} \\
-\textit{Technical University of Munich}\\
-Munich, Germany \\
-hansini.vijayaraghavan@tum.de}
-\and
-\IEEEauthorblockN{4\textsuperscript{th} Juan-Antonio Cordero-Fuertes}
-\IEEEauthorblockA{\textit{Laboratoire d'Informatique} \\
-\textit{École Polytechnique}\\
-Palaiseau, France \\
-juan-antonio.cordero-fuertes@polytechnique.edu}
-}
+    hansini.vijayaraghavan@tum.de}
+    \and
+    \IEEEauthorblockN{4\textsuperscript{th} Juan-Antonio Cordero-Fuertes}
+    \IEEEauthorblockA{\textit{Laboratoire d'Informatique} \\
+    \textit{École Polytechnique}\\
+    Palaiseau, France \\
+    juan-antonio.cordero-fuertes@polytechnique.edu}
+    }
 
-\maketitle
+    \maketitle
 
-\begin{abstract}
-\todo[inline]{Write abstract}
-This document is a model and instructions for \LaTeX.
-This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes, 
-or Math in Paper Title or Abstract.
-\end{abstract}
+    \begin{abstract}
+        \todo[inline]{Write abstract}
+        This document is a model and instructions for \LaTeX.
+        This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes,
+        or Math in Paper Title or Abstract.
+    \end{abstract}
 
-\begin{IEEEkeywords}
-Free-Space Optical Communication (FSO), mobile networks, backhaul, line-of-sight (LoS)
-\end{IEEEkeywords}
+    \begin{IEEEkeywords}
+        Free-Space Optical Communication (FSO), mobile networks, backhaul, line-of-sight (LoS)
+    \end{IEEEkeywords}
 
-\input{content/introduction}
+    \input{content/introduction}
 
-\subsection*{Related Work}\label{subsec:related-work}
-\todo[inline]{Write Related Work}
-industry: show feasibility of urban FSO
+    \subsection*{Related Work}\label{subsec:related-work}
+    \todo[inline]{Write Related Work}
+    industry: show feasibility of urban FSO
 
-line-of-sight:
+    line-of-sight:
 
-- obstructions usually LoD 1, e. g. FSONet (later contrast: LiDAR far more detailed);
+    - obstructions usually LoD 1, e. g. FSONet (later contrast: LiDAR far more detailed);
 
-- for arbitrary locations, not existing ones
+    - for arbitrary locations, not existing ones
 
-- LiDAR for mmWave in England? not France
+    - LiDAR for mmWave in England? not France
 
-Besides the LoS requirement, FSO is additionally limited by its link ranges during adverse weather conditions, which has been extensively studied, but is continually evolving as research improves the technology.
-Various surveys cite different values for worst-case supported link ranges.
-Demers et al.~state a sub-kilometer constraint~\cite{fsobackhaul}.
-Kaushal and Kaddoum cite a range of 140 to 500 m for carrier-class availability~\cite{fsochallenges}.
-Sadiku et al.~provide a range of 200 to 2000 m~\cite{fsooverview}, and Chaudhary and Amphawan show a working range of 250 m in the worst-case~\cite{fsorole}.
+    Besides the LoS requirement, FSO is additionally limited by its link ranges during adverse weather conditions, which has been extensively studied, but is continually evolving as research improves the technology.
+    Various surveys cite different values for worst-case supported link ranges.
+    Demers et al.~state a sub-kilometer constraint~\cite{fsobackhaul}.
+    Kaushal and Kaddoum cite a range of 140 to 500 m for carrier-class availability~\cite{fsochallenges}.
+    Sadiku et al.~provide a range of 200 to 2000 m~\cite{fsooverview}, and Chaudhary and Amphawan show a working range of 250 m in the worst-case~\cite{fsorole}.
 
-relays: also widely accepted as a very, if not the most effective counter-measurement
+    relays: also widely accepted as a very, if not the most effective counter-measurement
 
-\subsection*{Contributions}\label{subsec:contributions2}
-\todo[inline]{Write Contributions}
-Close to existing contributions chapter
+    \subsection*{Contributions}\label{subsec:contributions2}
+    \todo[inline]{Write Contributions}
+    Close to existing contributions chapter
 
-What do we do, raw
+    What do we do, raw
 
-- Allude to relay idea from introduction (hop by hop)
+    - Allude to relay idea from introduction (hop by hop)
 
-- worst-case analysis (short links - reader will think "many"?); briefly cut on optimizations for average-cases, regarding hop counts (relieve reader: not many hops usually), and fault resilience briefly
+    - worst-case analysis (short links - reader will think "many"?); briefly cut on optimizations for average-cases, regarding hop counts (relieve reader: not many hops usually), and fault resilience briefly
 
-- take ideas from presentation for a logical introduction to our methodology
+    - take ideas from presentation for a logical introduction to our methodology
 
-- Be very clear about what we do not do, too (capacities, gateways, TE, ...)
+    - Be very clear about what we do not do, too (capacities, gateways, TE, ...)
 
-Contrast to Related Work:
+    Contrast to Related Work:
 
-- Use existing nodes
+    - Use existing nodes
 
-- Use more accurate obstruction models (only tease here, this is our transition to sec:implementation)
+    - Use more accurate obstruction models (only tease here, this is our transition to sec:implementation)
 
-- → Derive required link lengths from reality of mesh density
+    - → Derive required link lengths from reality of mesh density
 
-\subsection*{Paper Outline}\label{subsec:structure}
-\todo[inline]{Write Paper Outline}
-We continue by introducing our implementation for line-of-sight analysis, including data source selection, preprocessing steps, a comparison of ray tracing algorithms, and a note on adapting this implementation to different geographic areas and cell site locations.
+    \subsection*{Paper Outline}\label{subsec:structure}
+    \todo[inline]{Write Paper Outline}
+    We continue by introducing our implementation for line-of-sight analysis, including data source selection, preprocessing steps, a comparison of ray tracing algorithms, and a note on adapting this implementation to different geographic areas and cell site locations.
 
-... evaluation ...
+    ... evaluation ...
 
-... validation ...
+    ... validation ...
 
-... conclusion ...
+    ... conclusion ...
 
 % No background chapter (FSO background is briefly introduced in introduction - "what is FSO and its main challenge")
 
-\section{Implementation}\label{sec:implementation}
-\todo[inline]{Write Implementation transition}
 
-\subsection*{Data Sources}\label{subsec:data-sources}
-A candidate link is a link whose line-of-sight availability will be checked in the next step.
-The central idea is that while each cell site has its own backhaul requirements, it also acts as a relay for backhaul traffic of its neighbors and their neighbors.
-Candidate links, therefore, are always between two cell sites.
+    \section{Implementation}\label{sec:implementation}
+    \todo[inline]{Write Implementation transition}
 
-We use a filtered version of the French National Frequencies Agency (ANFR) database ``Données sur les installations radioélectriques de plus de 5 watts'' (data on radio installations exceeding 5 W). It is unique because it is an official, country-wide, operator-wide, public source of cell sites including their locations and mounting heights.
-Other countries, such as Germany or the United States, do not publish or collect this data, because of national security concerns and different statutory requirements.
-Coordinates are given of emitter supports, which are structures on which several antennas by different operators can be mounted.
-Around 3/4 are buildings, 1/4 towers and masts, and only 2.4\% of different nature.
-While the database names exact coordinates for every support, particularly buildings and wide broadcasting towers are large structures where antennas may be mounted in many locations on the support.
-The locations therefore do not provide the exact constraints for where FSO transceivers can be mounted on a support, but only one point.
-We further see that when compared to Google Maps and Street View imagery, some database locations appear visibly shifted from the real location of the antenna support.
-For all building supports, we run a heuristic improvement by comparing their location to an official public building atlas and snapping it to the closest building.
-A quantitative analysis of the error and the heuristic follows in~\cref{subsec:cell-site-locations}.
+    \subsection*{Data Sources}\label{subsec:data-sources}
+    A candidate link is a link whose line-of-sight availability will be checked in the next step.
+    The central idea is that while each cell site has its own backhaul requirements, it also acts as a relay for backhaul traffic of its neighbors and their neighbors.
+    Candidate links, therefore, are always between two cell sites.
 
-Simulating realistic lines-of-sight requires a model of obstructions of the world.
-We deliberately decide against statistical models, such as the Manhattan Grid Model, in favor of sensor-based models.
+    We use a filtered version of the French National Frequencies Agency (ANFR) database ``Données sur les installations radioélectriques de plus de 5 watts'' (data on radio installations exceeding 5 W). It is unique because it is an official, country-wide, operator-wide, public source of cell sites including their locations and mounting heights.
+    Other countries, such as Germany or the United States, do not publish or collect this data, because of national security concerns and different statutory requirements.
+    Coordinates are given of emitter supports, which are structures on which several antennas by different operators can be mounted.
+    Around 3/4 are buildings, 1/4 towers and masts, and only 2.4\% of different nature.
+    While the database names exact coordinates for every support, particularly buildings and wide broadcasting towers are large structures where antennas may be mounted in many locations on the support.
+    The locations therefore do not provide the exact constraints for where FSO transceivers can be mounted on a support, but only one point.
+    We further see that when compared to Google Maps and Street View imagery, some database locations appear visibly shifted from the real location of the antenna support.
+    For all building supports, we run a heuristic improvement by comparing their location to an official public building atlas and snapping it to the closest building.
+    A quantitative analysis of the error and the heuristic follows in~\cref{subsec:cell-site-locations}.
 
-OpenStreetMap, as well as the national mapping agency of France (IGN), which is the country of origin of the cell location database, have datasets of building footprints along with a single height value.
-This approach has been used in previous works, see~\cref{subsec:related-work}.
-Irrespective of their shape, with this method, buildings are limited to be modeled as cuboids, and other obstructions are not captured, such as vegetation or bridges.
-Both data sources also lack values for some buildings around Paris.
+    Simulating realistic lines-of-sight requires a model of obstructions of the world.
+    We deliberately decide against statistical models, such as the Manhattan Grid Model, in favor of sensor-based models.
 
-Commercial options exist, offering increased accuracy based on LiDAR measurements, as well as raw LiDAR point clouds, post-processed formats thereof and multi-sensor measurements.
-Availability in France varies.
-The evaluated options employ unpredictable, recurring or undisclosed pricing models\todo{should I refer to the tested options here through citations?}.
+    OpenStreetMap, as well as the national mapping agency of France (IGN), which is the country of origin of the cell location database, have datasets of building footprints along with a single height value.
+    This approach has been used in previous works, see~\cref{subsec:related-work}.
+    Irrespective of their shape, with this method, buildings are limited to be modeled as cuboids, and other obstructions are not captured, such as vegetation or bridges.
+    Both data sources also lack values for some buildings around Paris.
 
-IGN also offers the public and free LiDAR HD program.
-It covers almost the entirety of metropolitan France at $10\ impulses/m^2$ with a total of 4 PB of data\todo{quote?}.
+    Commercial options exist, offering increased accuracy based on LiDAR measurements, as well as raw LiDAR point clouds, post-processed formats thereof and multi-sensor measurements.
+    Availability in France varies.
+    The evaluated options employ unpredictable, recurring or undisclosed pricing models\todo{should I refer to the tested options here through citations?}.
 
-A Digital Surface Model (DSM) is a map raster where each pixel encodes the height of the first and highest LiDAR return, capturing the surface elevation of the covered area.
-IGN provides a DSM derived product based on their LiDAR HD program.
+    IGN also offers the public and free LiDAR HD program.
+    It covers almost the entirety of metropolitan France at $10\ impulses/m^2$ with a total of 4 PB of data\todo{quote?}.
 
-We choose this product because DSMs are a standardized, non-proprietary format which may have public data sources in other countries.
-It also reduces the data to a more manageable amount by around three orders of magnitude compared to the raw LiDAR point cloud, while maintaining high resolution.
+    A Digital Surface Model (DSM) is a map raster where each pixel encodes the height of the first and highest LiDAR return, capturing the surface elevation of the covered area.
+    IGN provides a DSM derived product based on their LiDAR HD program.
 
-\subsection*{Algorithm}\label{subsec:algorithm}
-Conceptually, computing collisions of a line with the obstruction model requires calculating which pixels of the DSM raster it crosses and checking if the surface at any of those pixels is higher than the line.
+    We choose this product because DSMs are a standardized, non-proprietary format which may have public data sources in other countries.
+    It also reduces the data to a more manageable amount by around three orders of magnitude compared to the raw LiDAR point cloud, while maintaining high resolution.
 
-Line rasterization algorithms from computer graphics, such as Bresenham's and Xiaolin Wu's algorithm, solve a similar problem of painting pixels between two lines~\cite{bresenham, xiaolinwu}.
-Designed for another purpose, however, they do not paint exactly all pixels touched by the line, skipping over potential obstacles\todo{show? figure? or good without deeper explanation?}.
-Sampling points along the line at a rate of two samples per pixel shows accuracy gains at similar speeds, but still misses pixels.
-The Python library rasterio offers a function masking exactly all pixels touched by a line, which in turn calls to GDAL~\cite{gdal}.
-The fastest, accurate, CPU-based method tested is ``A Fast Voxel Traversal Algorithm'' by Amanatides and Woo~\cite{amanatides1987fast}.
-Hardware accelerators may also be used, but early-exit performance gains will suffer from shared program counters.
+    \subsection*{Algorithm}\label{subsec:algorithm}
+    Conceptually, computing collisions of a line with the obstruction model requires calculating which pixels of the DSM raster it crosses and checking if the surface at any of those pixels is higher than the line.
 
-\todo{Write \& shorten OptiX talk}
-NVIDIA and other graphics processing unit producers offer dedicated ray tracing offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware.
-Our tests show that the main bottleneck becomes the memory transfer of the DSM to the accelerator, the time spent on building the AS and the additional memory occupied by the AS.
-The DSM can be seen as a two-dimensional grid of ``pixel pillars'' - each pixel a cuboid stretching from -inf to the surface height at the pixel.
-Converting the DSM to triangle primitives without quality loss requires two triangles per visible surface, which are laid out as one rectangle.
-Since the top surface of a pixel is always visible, and the bottom pixel is always covered by the sides of this and neighboring pixels and is never visible, and assuming that on average two sides are visible per pixel, this results in six triangles per pixel.
-... 3 floats per triangle, 1 after compaction, too many values, memory inflation ...
-Using instance acceleration structures (IAS), which allow replicating one AS by shifting and scaling it, may reduce this memory inflation.
-NVIDIA supports custom primitives for its ray tracing platform for any objects that cannot be modeled adequately with triangles.
-Custom primitives assign an axis-aligned bounding box (AABB) containing the primitive and a custom shader, which will be invoked when a ray intersects the AABB. The ray tracing check is still offloaded and only hands over to the shader for an intersection with the AABB.
-Since aforementioned ``pixel pillars'' are AABBs, they can be transformed to custom primitives.
-Whenever the intersection shader is called, it already marks an intersection without further computation, and the line can immediately be marked as blocked.
-Memory inflation can also be combated by smoothing out the model creating a triangulated RSG (regular square grid).
-Each pixel is converted to one triangle that
-... conservative conversion (always the maximum) ...
-... performance: 6-8 gigarays per second for one 1*1km tile, but lines have to split up over tiles because AS cannot grow much larger ...\
-\todo{mention more explicitly that the CPU version generally is line-bound, whereas the RT version is area-bound}
+    Line rasterization algorithms from computer graphics, such as Bresenham's and Xiaolin Wu's algorithm, solve a similar problem of painting pixels between two lines~\cite{bresenham, xiaolinwu}.
+    Designed for another purpose, however, they do not paint exactly all pixels touched by the line, skipping over potential obstacles\todo{show? figure? or good without deeper explanation?}.
+    Sampling points along the line at a rate of two samples per pixel shows accuracy gains at similar speeds, but still misses pixels.
+    The Python library rasterio offers a function masking exactly all pixels touched by a line, which in turn calls to GDAL~\cite{gdal}.
+    The fastest, accurate, CPU-based method tested is ``A Fast Voxel Traversal Algorithm'' by Amanatides and Woo~\cite{amanatides1987fast}.
+    Hardware accelerators may also be used, but early-exit performance gains will suffer from shared program counters.
 
-The choice of implementation between CPU, CUDA and OptiX depends primarily on the size of the datasets and region considered, the density of lines per area, implementation complexity and hardware accelerator availability.
-For the data and area considered in this paper, the CPU version shows sufficient performance, but derived work with significantly more lines to check will benefit from a hardware ray-traced version.
+    \todo{Write \& shorten OptiX talk}
+    NVIDIA and other graphics processing unit producers offer dedicated ray tracing offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware.
+    Our tests show that the main bottleneck becomes the memory transfer of the DSM to the accelerator, the time spent on building the AS and the additional memory occupied by the AS.
+    The DSM can be seen as a two-dimensional grid of ``pixel pillars'' - each pixel a cuboid stretching from -inf to the surface height at the pixel.
+    Converting the DSM to triangle primitives without quality loss requires two triangles per visible surface, which are laid out as one rectangle.
+    Since the top surface of a pixel is always visible, and the bottom pixel is always covered by the sides of this and neighboring pixels and is never visible, and assuming that on average two sides are visible per pixel, this results in six triangles per pixel.
+    ... 3 floats per triangle, 1 after compaction, too many values, memory inflation ...
+    Using instance acceleration structures (IAS), which allow replicating one AS by shifting and scaling it, may reduce this memory inflation.
+    NVIDIA supports custom primitives for its ray tracing platform for any objects that cannot be modeled adequately with triangles.
+    Custom primitives assign an axis-aligned bounding box (AABB) containing the primitive and a custom shader, which will be invoked when a ray intersects the AABB. The ray tracing check is still offloaded and only hands over to the shader for an intersection with the AABB.
+    Since aforementioned ``pixel pillars'' are AABBs, they can be transformed to custom primitives.
+    Whenever the intersection shader is called, it already marks an intersection without further computation, and the line can immediately be marked as blocked.
+    Memory inflation can also be combated by smoothing out the model creating a triangulated RSG (regular square grid).
+    Each pixel is converted to one triangle that
+    ... conservative conversion (always the maximum) ...
+    ... performance: 6-8 gigarays per second for one 1*1km tile, but lines have to split up over tiles because AS cannot grow much larger ...\
+    \todo{mention more explicitly that the CPU version generally is line-bound, whereas the RT version is area-bound}
 
-\subsection*{Adaptability}\label{subsec:adaptability}
-\todo[inline]{Write or remove adaptability}
+    The choice of implementation between CPU, CUDA and OptiX depends primarily on the size of the datasets and region considered, the density of lines per area, implementation complexity and hardware accelerator availability.
+    For the data and area considered in this paper, the CPU version shows sufficient performance, but derived work with significantly more lines to check will benefit from a hardware ray-traced version.
 
-\section{Evaluation}\label{sec:evaluation}
-\todo[inline]{Write evaluation transition}
-
-\subsection{Parameters}\label{subsec:parameters}
-\todo[inline]{Write parameters}
-Setup, what did we test exactly (parameters)
-
-all links are assumed to be bidirectional / full-duplex
-
-\subsection{Connectedness}\label{subsec:connectedness}
-\todo{Shorten}
-Given those parameters, 12.2\% of all candidate links are unobstructed and therefore theoretically suitable for an FSO link.
-As worst-case free-space optical link quality degrades with increasing link length, our focus lies on short links.
-On one side, the probability of an obstacle blocking the LoS of a link grows with increasing link length, favoring short links over long links.
-On the other side, the further out you go from each individual node, the more candidate links can be found for it, leading to more long candidate links.
-Both effects in combination lead to the distribution shown in~\cref{fig:link_lengths_pdf}, which particularly shows that only a small fraction of clear links are \textgreater400 m long.
-
-\begin{figure}[htbp]
-    \centerline{\includegraphics[width=\columnwidth]{figures/stats/link_lengths_pdf}}
-    \caption{Lengths of tested lines that are clear. Short links are underrepresented.}
-    \label{fig:link_lengths_pdf}
-\end{figure}
-
-A key feature of the methodology of this paper is that the nodes mirror cells from real deployments, whose locations were not chosen with line-of-sight availability in mind.
-More relevant than the absolute amount of links is therefore whether connectivity is guaranteed for each node.
-In~\cref{fig:connected_nodes_over_length}, we see that already at $200m$, a majority of the nodes has at least one line-of-sight to another node.
-With links of a maximum length of $300m$, this number grows to around 3/4 of nodes, after which its growth starts to slow.
-Using links of more than $1000m$ yields diminishing returns in newly connected nodes.
-
-\begin{figure}[htbp]
-    \centerline{\includegraphics[width=\columnwidth]{figures/stats/connected_nodes_over_length}}
-    \caption{Fraction of nodes with at least one line-of-sight with varying maximum link lengths.}
-    \label{fig:connected_nodes_over_length}
-\end{figure}
-
-\todo{also show a curve ``Fraction of nodes with \textgreater2 edges'' and one ``Fraction of nodes with \textgreater5 edges'' or so}
-
-\todo{Mention impact of degree of urbanization}
-urban → more dense → look at urban nodes specifically?
-
-There are four major companies operating cell sites across France.
-Uniformly, their networks converge to a single large connected component with links up to 10 km.
-Moreover, as motivated by the analysis of the degree of urbanization, a single connected component spans the city of Paris much earlier at 500 m.
-By combining the cell sites of any two operators, the component consistently already shows up at $<$ 410 m.
-A similar connected component emerges already at 315 m when all four operators pool their topologies.
-We consider the area that is spun up by the concave hull of the component, generated by the concaveman JavaScript library \todo{cite https://github.com/mapbox/concaveman} and visible in~\cref{fig:components_300m}.
-In the entire region, we saw that ~3/4 of nodes have a line-of-sight, but inside the hull of the component, less than 5\% are disconnected.
-Compared to the overall best disconnection ratio at 10 km, 2.4\%, this implies that providing essential connectivity for a mobile backhaul backbone for the city of Paris already works nearly as well at 300 m as it will with longer links.
-As stated in~\cref{subsec:contributions2}, complete capacity simulations are out of scope of this thesis.
-
-\begin{figure}[htbp]
-    \centerline{\includegraphics[width=\columnwidth]{figures/components-300m}}
-    \caption{A connected component covering the city of Paris with lines of sight up to 300 m.}
-    \label{fig:components_300m}
-\end{figure}
-
-\subsection{Resilience}\label{subsec:resilience}
-For stronger connectivity guarantees, edge connectivity analysis shows how many link failures a connected component can tolerate the least while staying connected.
-Menger's theorem additionally states that in a k-edge connected graph, any pair of nodes is connected by k disjoint paths.
-Comparing to the previous connected component based on the combined network of two operators, a two-edge connected component that covers the city of Paris appears at 430 m.
-With nodes from all four operators, only links up to 360 m are needed.
-
-While k-edge connected components are protected from random link failures, FSO link failures resulting from LoS-interruptions are spatially correlated.
-Depending on the size of the obstacle and the angular diversity of links connecting nodes, a single obstacle can block several or all links of a node at once.
-For a worst-case analysis, we look at each individual node and calculate the minimum angle $\alpha$ that a single rectangular obstacle needs to cover in order to block all LoS, effectively completely isolating the node. \todo{Add numbers / graph}
-Translating this to an average-case, in~\cref{fig:todo} we see the probability of a randomly placed obstacle of varying $\alpha$ isolating a node. \todo{Add numbers / graph}
-
-\subsection{Hop Counts}\label{subsec:hop-counts}
-\todo{Shorten towards the end}
-While nodes grouped up in a connected component does mean that they can communicate with each other, the path is at risk of containing a large number of hops.
-The topology of all nodes and links up to 300 m contains shortest paths of more than 60 hops.
-This is an inherent limitation of the relaying approach during worst-case conditions.
-During best-case conditions, however, transmission ranges of 40 km have been shown~\cite{Willitsford:24}.
-FSO has the unique ability to reconfigure its link by physically steering the transmitter to point at another receiver in ``time scales of ms-s''~\cite{invited}.
-This rewiring process is also known as the Small World phenomenon~\cite{smallworld}.
-Key insight of the Watts and Strogatz model is that a highly clustered graph only needs a small percentage of shortcut links to achieve a high reduction in the ``average degrees of separation'', here hop count, while maintaining the clustering.~\cref{fig:hop_counts_rewired} shows that on our connected component by randomly selecting lines in the topology, removing them from the graph and adding a new, random line of up to $10km$ length to simulate a best-case scenario.
-Availability of such long links is shown in~\cref{fig:link_lengths_pdf}.
-Each step is run in 4 samples and the variation between those runs indicated with confidence markers.
-We see that only rewiring 1\% of links halves the average hop count, rewiring 10\% reduces it to a third.
-
-So far, we considered the worst-case and the best-case.
-For average-case analysis, we simulate link reconfiguration by replacing links with new ones of more limited range.
-This simulates conditions that don't allow for links of $10km$ or more, but also don't require minimal ranges only.
-That translates, for instance, to average rain or light fog.
-~\cref{fig:hop_counts_rewired} already includes several lines for average hop counts after rewiring with various maximum link lengths.
-We see that reconfiguring links from $<300m$ to $<1000m$ has limited effects, but can at least halve the average hop count if every tenth link is reconfigured.
-Furthermore, there is not much benefit to starting to use of links of more than $5km$.
-~\cref{fig:hop_counts_1_percent} shows the full distributions of path lengths at a fix 1\% rewiring probability.
-Even when reconfigured links are of unlimited range, there are still hop counts of 40 and higher.
-
-Next to $300m$, we also consider the connected component made up of links of up to $1000m$ and use the same graphs.
-We find a similar path length distribution, with a slightly lower average (20) and longer tail (running up to 80).
-Reconfiguring even every tenth link to twice the length, $2km$, only decreases the average hop count to 14.
-However, we see in~\cref{fig:hop_counts_1_percent_1000m} vastly improved results for 1\% reconfigurations with links of unlimited length and $10km$.
-Very few to no paths are longer than 20 hops and the average drops below 10.
-
-\todo{how to integrate results of different cities (depends on what the results look like in the first place)}
-
-\section{Validation}\label{sec:validation}
-We analyze the limitations of the input data, our methodology and the implementation.
-
-\subsection{Cell Site Locations}\label{subsec:cell-site-locations}
-Comparing the antenna support locations as given by the database to the LiDAR data and Google Maps 3D imagery exposes inaccuracies that are not officially documented.
-However, more reliable data sources are not available.
-For around 9500 cell sites in the area around Paris alone, correcting the locations by visiting each is not feasible.
-Automating the correction based on visuals from Google Street View and EMR measurements from OpenCelliD may work, but is limited by the incomplete availability of that data and significant complexity.
-We choose to take a random sample subset of the support locations and correct their position based on Google Maps 3D data where the data quality is sufficient to indicate the exact three-dimensional position of the highest point of the support.
-400 (4\%) of database entries were validated which show a horizontal deviation of...... \todo{Better error analysis (wait for new values)}
-Based on these verified values, the heuristic developed in~\cref{subsec:data-sources} snapping building antenna supports to the nearest building shows an improvement of X\%.
-For towers and masts, a heuristic is to assume those locations to be the highest surface point in close proximity of the database location, reusing the DSM.
-However, analysis shows that thin support masts are not reliably picked up by the model.
-
-\todo[inline]{Google vs RGE Alti}
-
-\subsection{Digital Surface Model}\label{subsec:digital-surface-model}
-LiDAR is generally well-suited for FSO LoS checks as they commonly share the same near-infrared band\todo{show / quote / is this necessary?}.
-The LiDAR impulse data by IGN has an average of $10\ impulses/m^2$ with vertical accuracy of $~10\ cm$ and horizontal accuracy of $~50\ cm$.
-The DSM output is generally delivered at a grid space of $50\ cm$, lowering resolution by a factor of $2.5$.
-Modeling only the surface, it also crops information about the shape of objects underneath the surface, leading to any gaps through which a LoS could pass, for example through the Eiffel Tower or underneath bridges, not being modeled.
-
-The data has been collected since 2021 and constitutes only a momentary snapshot of obstructions.
-Volatile and future obstructions are not or inconsistently modeled, such as road vehicles, birds, new constructions and tree foliage of deciduous trees.
-
-A total of 0.046\% of the area considered takes on the ``nodata'' value, which we consider negligible.
-``Zones Interdites à la Captation Aérienne des Données'' (ZICAD, restricted areas for aerial data collection) are either included in the nodata areas or censored through interpolation from surrounding data.
-
-\todo{how much area is NODATA across all cities checked? update the 0.046\% as that's for Paris only}
-
-\subsection{Numerical tradeoffs}\label{subsec:numerical-tradeoffs}
-\todo[inline]{Write numerical tradeoffs}
-earth's curvature + atmospheric refraction
-
-coordinate conversions
-
-floating point?
-
-\section{Conclusion}\label{sec:conclusion}
-\todo[inline]{Write conclusion}
-Pick measured values back up from Related Work, and put in relation to our results (same as parts of ch:discussion from thesis)
-
-→ What does this mean for the future?
-
-And why is that relevant?
-
-And why are these results credible?
-
-(And how can we go on from here? Immediate next steps? How to form this into a meaningful framework?)
-
-\vspace{12pt} % Keep?
+    \subsection*{Adaptability}\label{subsec:adaptability}
+    \todo[inline]{Write or remove adaptability}
 
 
-\bibliographystyle{IEEEtran}
-\bibliography{IEEEabrv,IEEEexample,bibliography}
+    \section{Evaluation}\label{sec:evaluation}
+    \todo[inline]{Write evaluation transition}
+
+    \subsection{Parameters}\label{subsec:parameters}
+    \todo[inline]{Write parameters}
+    Setup, what did we test exactly (parameters)
+
+    all links are assumed to be bidirectional / full-duplex
+
+    \subsection{Connectedness}\label{subsec:connectedness}
+    \todo{Shorten}
+    Given those parameters, 12.2\% of all candidate links are unobstructed and therefore theoretically suitable for an FSO link.
+    As worst-case free-space optical link quality degrades with increasing link length, our focus lies on short links.
+    On one side, the probability of an obstacle blocking the LoS of a link grows with increasing link length, favoring short links over long links.
+    On the other side, the further out you go from each individual node, the more candidate links can be found for it, leading to more long candidate links.
+    Both effects in combination lead to the distribution shown in~\cref{fig:link_lengths_pdf}, which particularly shows that only a small fraction of clear links are \textgreater400 m long.
+
+    \begin{figure}[htbp]
+        \centerline{\includegraphics[width=\columnwidth]{figures/stats/link_lengths_pdf}}
+        \caption{Lengths of tested lines that are clear. Short links are underrepresented.}
+        \label{fig:link_lengths_pdf}
+    \end{figure}
+
+    A key feature of the methodology of this paper is that the nodes mirror cells from real deployments, whose locations were not chosen with line-of-sight availability in mind.
+    More relevant than the absolute amount of links is therefore whether connectivity is guaranteed for each node.
+    In~\cref{fig:connected_nodes_over_length}, we see that already at $200m$, a majority of the nodes has at least one line-of-sight to another node.
+    With links of a maximum length of $300m$, this number grows to around 3/4 of nodes, after which its growth starts to slow.
+    Using links of more than $1000m$ yields diminishing returns in newly connected nodes.
+
+    \begin{figure}[htbp]
+        \centerline{\includegraphics[width=\columnwidth]{figures/stats/connected_nodes_over_length}}
+        \caption{Fraction of nodes with at least one line-of-sight with varying maximum link lengths.}
+        \label{fig:connected_nodes_over_length}
+    \end{figure}
+
+    \todo{also show a curve ``Fraction of nodes with \textgreater2 edges'' and one ``Fraction of nodes with \textgreater5 edges'' or so}
+
+    \todo{Mention impact of degree of urbanization}
+    urban → more dense → look at urban nodes specifically?
+
+    There are four major companies operating cell sites across France.
+    Uniformly, their networks converge to a single large connected component with links up to 10 km.
+    Moreover, as motivated by the analysis of the degree of urbanization, a single connected component spans the city of Paris much earlier at 500 m.
+    By combining the cell sites of any two operators, the component consistently already shows up at $<$ 410 m.
+    A similar connected component emerges already at 315 m when all four operators pool their topologies.
+    We consider the area that is spun up by the concave hull of the component, generated by the concaveman JavaScript library \todo{cite https://github.com/mapbox/concaveman} and visible in~\cref{fig:components_300m}.
+    In the entire region, we saw that ~3/4 of nodes have a line-of-sight, but inside the hull of the component, less than 5\% are disconnected.
+    Compared to the overall best disconnection ratio at 10 km, 2.4\%, this implies that providing essential connectivity for a mobile backhaul backbone for the city of Paris already works nearly as well at 300 m as it will with longer links.
+    As stated in~\cref{subsec:contributions2}, complete capacity simulations are out of scope of this thesis.
+
+    \begin{figure}[htbp]
+        \centerline{\includegraphics[width=\columnwidth]{figures/components-300m}}
+        \caption{A connected component covering the city of Paris with lines of sight up to 300 m.}
+        \label{fig:components_300m}
+    \end{figure}
+
+    \subsection{Resilience}\label{subsec:resilience}
+    For stronger connectivity guarantees, edge connectivity analysis shows how many link failures a connected component can tolerate the least while staying connected.
+    Menger's theorem additionally states that in a k-edge connected graph, any pair of nodes is connected by k disjoint paths.
+    Comparing to the previous connected component based on the combined network of two operators, a two-edge connected component that covers the city of Paris appears at 430 m.
+    With nodes from all four operators, only links up to 360 m are needed.
+
+    While k-edge connected components are protected from random link failures, FSO link failures resulting from LoS-interruptions are spatially correlated.
+    Depending on the size of the obstacle and the angular diversity of links connecting nodes, a single obstacle can block several or all links of a node at once.
+    For a worst-case analysis, we look at each individual node and calculate the minimum angle $\alpha$ that a single rectangular obstacle needs to cover in order to block all LoS, effectively completely isolating the node. \todo{Add numbers / graph}
+    Translating this to an average-case, in~\cref{fig:todo} we see the probability of a randomly placed obstacle of varying $\alpha$ isolating a node. \todo{Add numbers / graph}
+
+    \subsection{Hop Counts}\label{subsec:hop-counts}
+    \todo{Shorten towards the end}
+    While nodes grouped up in a connected component does mean that they can communicate with each other, the path is at risk of containing a large number of hops.
+    The topology of all nodes and links up to 300 m contains shortest paths of more than 60 hops.
+    This is an inherent limitation of the relaying approach during worst-case conditions.
+    During best-case conditions, however, transmission ranges of 40 km have been shown~\cite{Willitsford:24}.
+    FSO has the unique ability to reconfigure its link by physically steering the transmitter to point at another receiver in ``time scales of ms-s''~\cite{invited}.
+    This rewiring process is also known as the Small World phenomenon~\cite{smallworld}.
+    Key insight of the Watts and Strogatz model is that a highly clustered graph only needs a small percentage of shortcut links to achieve a high reduction in the ``average degrees of separation'', here hop count, while maintaining the clustering.~\cref{fig:hop_counts_rewired} shows that on our connected component by randomly selecting lines in the topology, removing them from the graph and adding a new, random line of up to $10km$ length to simulate a best-case scenario.
+    Availability of such long links is shown in~\cref{fig:link_lengths_pdf}.
+    Each step is run in 4 samples and the variation between those runs indicated with confidence markers.
+    We see that only rewiring 1\% of links halves the average hop count, rewiring 10\% reduces it to a third.
+
+    So far, we considered the worst-case and the best-case.
+    For average-case analysis, we simulate link reconfiguration by replacing links with new ones of more limited range.
+    This simulates conditions that don't allow for links of $10km$ or more, but also don't require minimal ranges only.
+    That translates, for instance, to average rain or light fog.
+    ~\cref{fig:hop_counts_rewired} already includes several lines for average hop counts after rewiring with various maximum link lengths.
+    We see that reconfiguring links from $<300m$ to $<1000m$ has limited effects, but can at least halve the average hop count if every tenth link is reconfigured.
+    Furthermore, there is not much benefit to starting to use of links of more than $5km$.
+    ~\cref{fig:hop_counts_1_percent} shows the full distributions of path lengths at a fix 1\% rewiring probability.
+    Even when reconfigured links are of unlimited range, there are still hop counts of 40 and higher.
+
+    Next to $300m$, we also consider the connected component made up of links of up to $1000m$ and use the same graphs.
+    We find a similar path length distribution, with a slightly lower average (20) and longer tail (running up to 80).
+    Reconfiguring even every tenth link to twice the length, $2km$, only decreases the average hop count to 14.
+    However, we see in~\cref{fig:hop_counts_1_percent_1000m} vastly improved results for 1\% reconfigurations with links of unlimited length and $10km$.
+    Very few to no paths are longer than 20 hops and the average drops below 10.
+
+    \todo{how to integrate results of different cities (depends on what the results look like in the first place)}
+
+
+    \section{Validation}\label{sec:validation}
+    We analyze the limitations of the input data, our methodology and the implementation.
+
+    \subsection{Cell Site Locations}\label{subsec:cell-site-locations}
+    Comparing the antenna support locations as given by the database to the LiDAR data and Google Maps 3D imagery exposes inaccuracies that are not officially documented.
+    However, more reliable data sources are not available.
+    For around 9500 cell sites in the area around Paris alone, correcting the locations by visiting each is not feasible.
+    Automating the correction based on visuals from Google Street View and EMR measurements from OpenCelliD may work, but is limited by the incomplete availability of that data and significant complexity.
+    We choose to take a random sample subset of the support locations and correct their position based on Google Maps 3D data where the data quality is sufficient to indicate the exact three-dimensional position of the highest point of the support.
+    400 (4\%) of database entries were validated which show a horizontal deviation of...... \todo{Better error analysis (wait for new values)}
+    Based on these verified values, the heuristic developed in~\cref{subsec:data-sources} snapping building antenna supports to the nearest building shows an improvement of X\%.
+    For towers and masts, a heuristic is to assume those locations to be the highest surface point in close proximity of the database location, reusing the DSM.
+    However, analysis shows that thin support masts are not reliably picked up by the model.
+
+    \todo[inline]{Google vs RGE Alti}
+
+    \subsection{Digital Surface Model}\label{subsec:digital-surface-model}
+    LiDAR is generally well-suited for FSO LoS checks as they commonly share the same near-infrared band\todo{show / quote / is this necessary?}.
+    The LiDAR impulse data by IGN has an average of $10\ impulses/m^2$ with vertical accuracy of $~10\ cm$ and horizontal accuracy of $~50\ cm$.
+    The DSM output is generally delivered at a grid space of $50\ cm$, lowering resolution by a factor of $2.5$.
+    Modeling only the surface, it also crops information about the shape of objects underneath the surface, leading to any gaps through which a LoS could pass, for example through the Eiffel Tower or underneath bridges, not being modeled.
+
+    The data has been collected since 2021 and constitutes only a momentary snapshot of obstructions.
+    Volatile and future obstructions are not or inconsistently modeled, such as road vehicles, birds, new constructions and tree foliage of deciduous trees.
+
+    A total of 0.046\% of the area considered takes on the ``nodata'' value, which we consider negligible.
+    ``Zones Interdites à la Captation Aérienne des Données'' (ZICAD, restricted areas for aerial data collection) are either included in the nodata areas or censored through interpolation from surrounding data.
+
+    \todo{how much area is NODATA across all cities checked? update the 0.046\% as that's for Paris only}
+
+    \subsection{Numerical tradeoffs}\label{subsec:numerical-tradeoffs}
+    \todo[inline]{Write numerical tradeoffs}
+    earth's curvature + atmospheric refraction
+
+    coordinate conversions
+
+    floating point?
+
+
+    \section{Conclusion}\label{sec:conclusion}
+    \todo[inline]{Write conclusion}
+    Pick measured values back up from Related Work, and put in relation to our results (same as parts of ch:discussion from thesis)
+
+    → What does this mean for the future?
+
+    And why is that relevant?
+
+    And why are these results credible?
+
+    (And how can we go on from here? Immediate next steps? How to form this into a meaningful framework?)
+
+    \vspace{12pt} % Keep?
+
+
+    \bibliographystyle{IEEEtran}
+    \bibliography{IEEEabrv,IEEEexample,bibliography}
 
 \end{document}
