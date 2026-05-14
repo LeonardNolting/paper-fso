@@ -91,9 +91,11 @@ What do we do, raw
 
 Contrast to Related Work:
 
-- Derive required link lengths from reality of mesh density
+- Use existing nodes
 
 - Use more accurate obstruction models (only tease here, this is our transition to sec:implementation)
+
+- → Derive required link lengths from reality of mesh density
 
 \subsection*{Paper Outline}\label{subsec:structure}
 We continue by introducing our implementation for line-of-sight analysis, including data source selection, preprocessing steps, a comparison of ray tracing algorithms, and a note on adapting this implementation to different geographic areas and cell site locations.
@@ -110,11 +112,19 @@ We continue by introducing our implementation for line-of-sight analysis, includ
 TODO
 
 \subsection*{Data Sources}\label{subsec:data-sources}
-explain that links = between nodes ⇒ only need nodes
+A candidate link is a link whose line-of-sight availability will be checked in the next step.
+The central idea is that while each cell site has its own backhaul requirements, it also acts as a relay for backhaul traffic of its neighbors and their neighbors.
+Candidate links, therefore, are always between two cell sites.
 
-cell sites source? (explain difference between suport and antenna) (fixes country to France for later for obstruction model choice)
-
-preprocessing - snapping and filtering
+We use a filtered version of the French National Frequencies Agency (ANFR) database ``Données sur les installations radioélectriques de plus de 5 watts'' (data on radio installations exceeding 5 W). It is unique because it is an official, country-wide, operator-wide, public source of cell sites including their locations and mounting heights.
+Other countries, such as Germany or the United States, do not publish or collect this data, because of national security concerns and different statutory requirements.
+Coordinates are given of emitter supports, which are structures on which several antennas by different operators can be mounted.
+Around 3/4 are buildings, 1/4 towers and masts, and only 2.4\% of different nature.
+While the database names exact coordinates for every support, particularly buildings and large broadcasting towers have large areas where antennas may be mounted in many locations on the support.
+The locations therefore do not provide the exact constraints for where FSO transceivers can be mounted on a support, but only one point.
+We further see that when compared to Google Maps and Street View imagery, some database locations appear visibly shifted from the real location of the antenna support.
+For all building supports, we run a heuristic improvement to these locations by comparing them to an official public building atlas and snapping the location to the closest building.
+A quantitative analysis of the error and the heuristic follows in~\cref{subsec:cell-site-locations}.
 
 Simulating realistic lines-of-sight requires a model of obstructions of the world.
 We deliberately decide against statistical models, such as the Manhattan Grid Model, in favor of sensor-based models.
