@@ -169,8 +169,8 @@ Line rasterization algorithms from computer graphics, such as Bresenham's and Xi
 Designed for another purpose, however, they do not paint exactly all pixels touched by the line, skipping over potential obstacles\todo{show? figure? or good without deeper explanation?}.
 Sampling points along the line at a rate of two samples per pixel shows accuracy gains at similar speeds, but still misses pixels.
 The Python library rasterio offers a function masking exactly all pixels touched by a line, which in turn calls to GDAL~\cite{gdal}.
-Tests show the fastest accurate CPU-based method to be ``A Fast Voxel Traversal Algorithm'' by Amanatides and Woo~\cite{amanatides1987fast}.
-NVIDIA CUDA accelerated programs may also be used, but early-exit performance gains will suffer from shared program counters.
+The fastest, accurate, CPU-based method tested is ``A Fast Voxel Traversal Algorithm'' by Amanatides and Woo~\cite{amanatides1987fast}.
+Hardware accelerators may also be used, but early-exit performance gains will suffer from shared program counters.
 
 \todo{Write \& shorten OptiX talk}
 NVIDIA and other graphics processing unit producers offer dedicated ray tracing offloading cores and SDKs. For instance, NVIDIA RTX GPUs can be programmed with the OptiX SDK by building a BVH (bounding volume hierarchy) acceleration structure (AS) in memory and running line-of-sight checks against that almost entirely in hardware.
