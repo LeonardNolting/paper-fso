@@ -195,32 +195,16 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
     \subsection{Hop Counts}\label{subsec:hop-counts}
     \todo{Shorten towards the end}
-    While nodes grouped up in a connected component does mean that they can communicate with each other, the path is at risk of containing a large number of hops.
-    The topology of all nodes and links up to 300 m contains shortest paths of more than 60 hops.
+    Nodes in a connected component can communicate with each other, but in the 300-m-topology, those paths often have 40 hops or more.
     This is an inherent limitation of the relaying approach during worst-case conditions.
-    During best-case conditions, however, transmission ranges of 40 km have been shown~\cite{Willitsford:24}.
+    During best-case conditions, however, longer transmission ranges, such as 40 km, are shown to be possible~\cite{Willitsford:24}.
     FSO has the unique ability to reconfigure its link by physically steering the transmitter to point at another receiver in ``time scales of ms-s''~\cite{invited}.
     This rewiring process is also known as the Small World phenomenon~\cite{smallworld}.
-    Key insight of the Watts and Strogatz model is that a highly clustered graph only needs a small percentage of shortcut links to achieve a high reduction in the ``average degrees of separation'', here hop count, while maintaining the clustering.~\cref{fig:hop_counts_rewired} shows that on our connected component by randomly selecting lines in the topology, removing them from the graph and adding a new, random line of up to $10km$ length to simulate a best-case scenario.
-    Availability of such long links is shown in~\cref{fig:link_lengths_pdf}.
-    Each step is run in 4 samples and the variation between those runs indicated with confidence markers.
-    We see that only rewiring 1\% of links halves the average hop count, rewiring 10\% reduces it to a third.
-
-    So far, we considered the worst-case and the best-case.
-    For average-case analysis, we simulate link reconfiguration by replacing links with new ones of more limited range.
-    This simulates conditions that don't allow for links of $10km$ or more, but also don't require minimal ranges only.
-    That translates, for instance, to average rain or light fog.
-    ~\cref{fig:hop_counts_rewired} already includes several lines for average hop counts after rewiring with various maximum link lengths.
-    We see that reconfiguring links from $<300m$ to $<1000m$ has limited effects, but can at least halve the average hop count if every tenth link is reconfigured.
-    Furthermore, there is not much benefit to starting to use of links of more than $5km$.
-    ~\cref{fig:hop_counts_1_percent} shows the full distributions of path lengths at a fix 1\% rewiring probability.
-    Even when reconfigured links are of unlimited range, there are still hop counts of 40 and higher.
-
-    Next to $300m$, we also consider the connected component made up of links of up to $1000m$ and use the same graphs.
-    We find a similar path length distribution, with a slightly lower average (20) and longer tail (running up to 80).
-    Reconfiguring even every tenth link to twice the length, $2km$, only decreases the average hop count to 14.
-    However, we see in~\cref{fig:hop_counts_1_percent_1000m} vastly improved results for 1\% reconfigurations with links of unlimited length and $10km$.
-    Very few to no paths are longer than 20 hops and the average drops below 10.
+    Key insight of the Watts and Strogatz model is that a highly clustered graph only needs a small percentage of shortcut links to achieve a high reduction in the ``average degrees of separation'', here hop count, while maintaining the clustering.
+    Simulating a worst-case topology (e.g., heavy fog) transitioning to less bad conditions (e.g., light fog) by replacing 10\% of \textless300 m with links \textless1000 m halves the average path length.
+    During clear, favorable conditions with 10\% link reconfigurations up to 5000 m, the average hop count shrinks to around 6, although extremes of 40 still exist.
+    Running the same analysis on a connected component from \textless1000 m links during worst-case conditions, which is subsequently larger, rewiring 10\% to 2000 m barely reduces average hop counts by 1/4.
+    Best-case reconfigurations up to 10000 m reduce the average to 5 hops, and barely any paths exceed 20 nodes.
 
     \todo{how to integrate results of different cities (depends on what the results look like in the first place)}
 
